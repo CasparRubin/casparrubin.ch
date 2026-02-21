@@ -44,7 +44,7 @@ export default function Page() {
           <ProfileCarousel />
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 items-center md:items-start text-center md:text-left">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               Caspar Camille{" "}
@@ -62,7 +62,7 @@ export default function Page() {
             </div>
           </div>
 
-          <ul className="text-muted-foreground flex flex-col gap-2 text-sm">
+          <ul className="text-muted-foreground flex flex-col gap-2 text-sm items-center md:items-start">
             <li className="flex items-center gap-2">
               <Briefcase className="text-primary size-4 shrink-0" />
               Working at <span className="text-foreground font-medium">ETH Zürich</span>
@@ -100,7 +100,7 @@ export default function Page() {
 
           <Separator />
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 items-center md:items-start">
             <h2 className="text-xs font-semibold uppercase tracking-widest">
               Tech Stack
             </h2>
@@ -111,7 +111,7 @@ export default function Page() {
               years without constant upkeep.
             </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               {stack.map((item) => (
                 <Tooltip key={item.name}>
                   <TooltipTrigger>
@@ -134,7 +134,7 @@ export default function Page() {
 
           <Separator />
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-y-3 gap-x-2 md:gap-2 justify-center md:justify-start">
             {links.map((item) => (
               <Tooltip key={item.name}>
                 <TooltipTrigger>
@@ -158,7 +158,7 @@ export default function Page() {
                 <TooltipContent>{item.tip}</TooltipContent>
               </Tooltip>
             ))}
-            <Separator orientation="vertical" className="mx-1 self-stretch" />
+            <Separator orientation="vertical" className="mx-1 self-stretch hidden md:block" />
             <Tooltip>
               <TooltipTrigger>
                 <a href="mailto:caspar@helvety.com">
