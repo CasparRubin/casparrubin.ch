@@ -38,15 +38,15 @@ export default function Page() {
   const daughterAge = yearsSince(2022, 11);
 
   return (
-    <section className="py-12 md:py-20">
-      <div className="grid items-center gap-8 md:grid-cols-[3fr_5fr] md:gap-14">
-        <div className="relative mx-auto mt-5 w-full max-w-[280px] md:max-w-[380px]">
+    <section className="py-12 lg:py-20">
+      <div className="grid items-center gap-8 lg:grid-cols-[3fr_5fr] lg:gap-14">
+        <div className="relative mx-auto mt-5 w-full max-w-[280px] lg:max-w-[380px]">
           <ProfileCarousel />
         </div>
 
-        <div className="flex flex-col gap-6 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col gap-6 items-center lg:items-start text-center lg:text-left">
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               Caspar Camille{" "}
               <span className="font-normal">Rubin</span>
             </h1>
@@ -62,7 +62,7 @@ export default function Page() {
             </div>
           </div>
 
-          <ul className="text-muted-foreground flex flex-col gap-2 text-sm items-center md:items-start">
+          <ul className="text-muted-foreground flex flex-col gap-2 text-sm items-center lg:items-start">
             <li className="flex items-center gap-2">
               <Briefcase className="text-primary size-4 shrink-0" />
               Working at <span className="text-foreground font-medium">ETH Zürich</span>
@@ -100,7 +100,7 @@ export default function Page() {
 
           <Separator />
 
-          <div className="flex flex-col gap-3 items-center md:items-start">
+          <div className="flex flex-col gap-3 items-center lg:items-start">
             <h2 className="text-xs font-semibold uppercase tracking-widest">
               Tech Stack
             </h2>
@@ -111,7 +111,7 @@ export default function Page() {
               years without constant upkeep.
             </p>
 
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {stack.map((item) => (
                 <Tooltip key={item.name}>
                   <TooltipTrigger>
@@ -134,7 +134,7 @@ export default function Page() {
 
           <Separator />
 
-          <div className="flex flex-wrap items-center gap-y-3 gap-x-2 md:gap-2 justify-center md:justify-start">
+          <div className="flex flex-wrap items-center gap-y-3 gap-x-2 lg:gap-2 justify-center lg:justify-start">
             {links.map((item) => (
               <Tooltip key={item.name}>
                 <TooltipTrigger>
@@ -158,7 +158,7 @@ export default function Page() {
                 <TooltipContent>{item.tip}</TooltipContent>
               </Tooltip>
             ))}
-            <Separator orientation="vertical" className="mx-1 self-stretch hidden md:block" />
+            <Separator orientation="vertical" className="mx-1 self-stretch hidden lg:block" />
             <Tooltip>
               <TooltipTrigger>
                 <a href="mailto:caspar@helvety.com">

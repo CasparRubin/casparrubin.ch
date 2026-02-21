@@ -48,7 +48,7 @@ export function ProfileCarousel() {
               alt="Caspar Camille Rubin"
               width={3024}
               height={4032}
-              sizes="(max-width: 768px) 280px, 380px"
+              sizes="(max-width: 1024px) 280px, 380px"
               priority={src === shuffled[0]}
               className="h-auto w-full saturate-[.9] contrast-[1.04]"
             />
