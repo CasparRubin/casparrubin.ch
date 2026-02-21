@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
 
@@ -28,7 +28,11 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export function ProfileCarousel() {
-  const [shuffled] = useState(() => shuffle(images))
+  const [shuffled, setShuffled] = useState(images)
+
+  useEffect(() => {
+    setShuffled(shuffle(images))
+  }, [])
 
   return (
     <Carousel

@@ -21,12 +21,11 @@ const stack = [
   { name: "AI Foundry", icon: "/stack/aiFoundry.png", tip: "AI integrations & custom agents" },
 ] as const;
 
-const age = Math.floor(
-  (Date.now() - new Date(1991, 5).getTime()) / 3.156e10
-);
-const daughterAge = Math.floor(
-  (Date.now() - new Date(2022, 11).getTime()) / 3.156e10
-);
+const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+
+function yearsSince(year: number, month: number): number {
+  return Math.floor((Date.now() - new Date(year, month).getTime()) / MS_PER_YEAR);
+}
 
 const links = [
   { name: "GitHub", icon: "/links/github.png", href: "https://github.com/CasparRubin", tip: "My open source projects" },
@@ -35,6 +34,9 @@ const links = [
 ] as const;
 
 export default function Page() {
+  const age = yearsSince(1991, 5);
+  const daughterAge = yearsSince(2022, 11);
+
   return (
     <section className="py-12 md:py-20">
       <div className="grid items-center gap-8 md:grid-cols-[3fr_5fr] md:gap-14">
@@ -133,47 +135,47 @@ export default function Page() {
           <Separator />
 
           <div className="flex flex-wrap items-center gap-2">
-              {links.map((item) => (
-                <Tooltip key={item.name}>
-                  <TooltipTrigger>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Badge variant="outline" className="gap-1.5 pr-2.5 hover:bg-muted">
-                        <Image
-                          src={item.icon}
-                          alt=""
-                          width={14}
-                          height={14}
-                          className="size-3.5 object-contain"
-                        />
-                        {item.name}
-                      </Badge>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>{item.tip}</TooltipContent>
-                </Tooltip>
-              ))}
-              <Separator orientation="vertical" className="mx-1 self-stretch" />
-              <Tooltip>
+            {links.map((item) => (
+              <Tooltip key={item.name}>
                 <TooltipTrigger>
-                  <a href="mailto:caspar@helvety.com">
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Badge variant="outline" className="gap-1.5 pr-2.5 hover:bg-muted">
                       <Image
-                        src="/links/helvety.png"
+                        src={item.icon}
                         alt=""
                         width={14}
                         height={14}
                         className="size-3.5 object-contain"
                       />
-                      caspar@helvety.com
+                      {item.name}
                     </Badge>
                   </a>
                 </TooltipTrigger>
-                <TooltipContent>Send me an email</TooltipContent>
+                <TooltipContent>{item.tip}</TooltipContent>
               </Tooltip>
+            ))}
+            <Separator orientation="vertical" className="mx-1 self-stretch" />
+            <Tooltip>
+              <TooltipTrigger>
+                <a href="mailto:caspar@helvety.com">
+                  <Badge variant="outline" className="gap-1.5 pr-2.5 hover:bg-muted">
+                    <Image
+                      src="/links/helvety.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="size-3.5 object-contain"
+                    />
+                    caspar@helvety.com
+                  </Badge>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>Send me an email</TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>

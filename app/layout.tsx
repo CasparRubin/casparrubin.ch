@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 import { Analytics } from "@vercel/analytics/next";
@@ -66,6 +67,7 @@ const jsonLd = {
   sameAs: [
     "https://github.com/CasparRubin",
     "https://www.linkedin.com/in/caspar-camille-rubin",
+    "https://helvety.com",
   ],
   knowsAbout: [
     "Azure",
@@ -94,6 +96,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {process.env.NODE_ENV === "development" && (
+          <Script src="https://unpkg.com/react-scan/dist/auto.global.js" strategy="beforeInteractive" />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
