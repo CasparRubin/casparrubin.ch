@@ -53,7 +53,7 @@ export default function Page() {
             <div className="mt-3">
               <Tooltip>
                 <TooltipTrigger>
-                  <Badge variant="default" className="pb-1 text-sm">Full Stack Enterprise System Engineer</Badge>
+                  <Badge variant="default" className="pb-1 text-sm">Full Stack Enterprise Systems Engineer</Badge>
                 </TooltipTrigger>
                 <TooltipContent>
                   I design and build end-to-end enterprise applications, from frontend to backend, including architecture and process automation.
@@ -94,7 +94,7 @@ export default function Page() {
               >
                 Helvety
               </a>{" "}
-              in my free time
+              in my free time (100% Open Source)
             </li>
           </ul>
 
