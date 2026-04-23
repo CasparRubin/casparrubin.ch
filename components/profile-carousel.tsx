@@ -15,18 +15,17 @@ const images = [
   "/caspar_rubin_camille_2.jpeg",
   "/caspar_rubin_camille_3.jpeg",
   "/caspar_rubin_camille_4.jpeg",
+  "/caspar_rubin_camille_5.jpg",
+  "/caspar_rubin_camille_6.jpg",
   "/caspar_rubin_camille_7.jpg",
   "/caspar_rubin_camille_8.jpg",
+  "/caspar_rubin_camille_9.jpg",
   "/caspar_rubin_camille_10.jpg",
   "/caspar_rubin_camille_11.jpg",
   "/caspar_rubin_camille_12.jpg",
-  "/caspar_rubin_camille_13.heic",
+  "/caspar_rubin_camille_13.jpg",
   "/caspar_rubin_camille_14.jpg",
   "/caspar_rubin_camille_15.jpg",
-  "/caspar_rubin_camille_16.jpg",
-  "/caspar_rubin_camille_18.jpg",
-  "/caspar_rubin_camille_19.jpg",
-  "/caspar_rubin_camille_20.jpg",
 ]
 
 function shuffle<T>(arr: T[]): T[] {
