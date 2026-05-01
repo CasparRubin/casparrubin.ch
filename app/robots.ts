@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "PerplexityBot", allow: "/" },
       { userAgent: "Perplexity-User", allow: "/" },
     ],
+    host: "https://casparrubin.ch",
     sitemap: "https://casparrubin.ch/sitemap.xml",
   };
 }

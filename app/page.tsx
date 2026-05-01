@@ -248,6 +248,9 @@ export default function Page() {
             <h2 className="text-xs font-semibold uppercase tracking-widest">
               More
             </h2>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Want to say hi? Get in touch or check out my open source projects.
+            </p>
             <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               <div className="flex items-center justify-center gap-2 lg:justify-start">
                 <a

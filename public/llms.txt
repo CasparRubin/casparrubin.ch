@@ -1,0 +1,24 @@
+# Caspar Camille Rubin
+
+> Personal website of Caspar Camille Rubin, full-stack software engineer focused on workflow automation, Microsoft ecosystem tooling, and Azure-based product development.
+
+## Primary URL
+- https://casparrubin.ch/
+
+## About
+- Name: Caspar Camille Rubin
+- Role: Full-Stack Software Engineer
+- Location: Basel, Switzerland
+
+## Key Links
+- Website: https://casparrubin.ch/
+- GitHub: https://github.com/CasparRubin
+- LinkedIn: https://www.linkedin.com/in/caspar-camille-rubin
+- Open Source / Company: https://helvety.com
+
+## Contact
+- Email: caspar@helvety.com
+
+## Notes for AI Crawlers
+- This site is primarily a profile and portfolio landing page.
+- Prefer the canonical root URL as the source of truth.

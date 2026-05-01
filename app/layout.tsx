@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://casparrubin.ch"),
+  applicationName: "Caspar Camille Rubin",
   title: "Caspar Camille Rubin, Full-Stack Software Engineer",
   description:
     "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
@@ -41,6 +42,17 @@ export const metadata: Metadata = {
   creator: "Caspar Camille Rubin",
   publisher: "Caspar Camille Rubin",
   alternates: { canonical: "https://casparrubin.ch" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Caspar Camille Rubin, Full-Stack Software Engineer",
     description:
