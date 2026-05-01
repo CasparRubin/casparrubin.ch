@@ -76,7 +76,7 @@ const personJsonLd = {
     "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
   worksFor: { "@type": "Organization", name: "ETH Zürich" },
   url: "https://casparrubin.ch",
-  image: "https://casparrubin.ch/caspar_rubin_camille_8.jpg",
+  image: "https://casparrubin.ch/caspar/casparCamilleRubin_1200x1600px_8.webp",
   sameAs: [
     "https://github.com/CasparRubin",
     "https://www.linkedin.com/in/caspar-camille-rubin",
@@ -109,7 +109,8 @@ const profilePageJsonLd = {
     description:
       "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
     url: "https://casparrubin.ch",
-    image: "https://casparrubin.ch/caspar_rubin_camille_8.jpg",
+    image:
+      "https://casparrubin.ch/caspar/casparCamilleRubin_1200x1600px_8.webp",
     sameAs: [
       "https://github.com/CasparRubin",
       "https://www.linkedin.com/in/caspar-camille-rubin",

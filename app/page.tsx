@@ -105,9 +105,7 @@ export default function Page() {
                   />
                 </>
               )}
-              <span>
-                {showExplanation ? "Got it" : "What does that mean?"}
-              </span>
+              <span>{showExplanation ? "Got it" : "What does that mean?"}</span>
             </Button>
           </div>
           <h2 className="text-xs font-semibold uppercase tracking-widest">

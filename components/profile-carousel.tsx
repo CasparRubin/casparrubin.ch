@@ -8,17 +8,19 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 const images = [
-  "/caspar_rubin_camille_1.jpeg",
-  "/caspar_rubin_camille_2.jpeg",
-  "/caspar_rubin_camille_3.jpeg",
-  "/caspar_rubin_camille_4.jpg",
-  "/caspar_rubin_camille_5.jpg",
-  "/caspar_rubin_camille_6.jpg",
-  "/caspar_rubin_camille_7.jpg",
-  "/caspar_rubin_camille_8.jpg",
+  "/caspar/casparCamilleRubin_1200x1600px_1.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_2.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_3.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_4.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_5.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_6.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_7.webp",
+  "/caspar/casparCamilleRubin_1200x1600px_8.webp",
 ];
 
 function shuffle<T>(arr: T[]): T[] {
@@ -40,7 +42,7 @@ export function ProfileCarousel() {
   return (
     <Carousel
       opts={{ loop: true }}
-      plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
+      plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
       className="overflow-hidden"
     >
       <CarouselContent className="-ml-0">
@@ -49,8 +51,8 @@ export function ProfileCarousel() {
             <Image
               src={src}
               alt="Caspar Camille Rubin"
-              width={3024}
-              height={4032}
+              width={1200}
+              height={1600}
               sizes="(max-width: 1024px) 280px, 380px"
               priority={src === shuffled[0]}
               className="h-auto w-full saturate-[.9] contrast-[1.04]"
@@ -61,6 +63,8 @@ export function ProfileCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
+      <CarouselPrevious className="left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90" />
+      <CarouselNext className="right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90" />
     </Carousel>
   );
 }
