@@ -168,7 +168,7 @@ export default function Page() {
             <p className="text-muted-foreground text-sm leading-relaxed">
               I mostly build within the Microsoft ecosystem, especially Azure
               and the Power Platform. When there is a product gap, I close it
-              with custom code, preferably in TypeScript.
+              with custom code.
             </p>
             <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
               <Badge variant="outline" className="gap-1.5 pr-2.5">
