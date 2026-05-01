@@ -166,8 +166,9 @@ export default function Page() {
               Stack
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              I mostly work with Microsoft and Azure tools because they are
-              reliable, secure, and practical for long-term maintenance.
+              I mostly build within the Microsoft ecosystem, especially Azure
+              and the Power Platform. When there is a product gap, I close it
+              with custom code, preferably in TypeScript.
             </p>
             <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
               <Badge variant="outline" className="gap-1.5 pr-2.5">
