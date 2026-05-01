@@ -37,9 +37,9 @@ function getAge(today: Date, birthDate: Date): number {
 export default function Page() {
   const [showExplanation, setShowExplanation] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
-  const roleTitle = "Full Stack Enterprise Systems Engineer";
+  const roleTitle = "Full-Stack Software Engineer";
   const roleExplanation =
-    "I handle the full process end-to-end: planning, designing, building, integrating, and automating business software.";
+    "I plan, build, and connect business software, then automate the workflows around it.";
   const today = new Date();
   const age = getAge(today, new Date(1991, 5, 18));
   const daughterAge = getAge(today, new Date(2022, 11, 1));
@@ -106,7 +106,7 @@ export default function Page() {
                 </>
               )}
               <span>
-                {showExplanation ? "weird flex, but ok" : "WTF does that mean?"}
+                {showExplanation ? "Got it" : "What does that mean?"}
               </span>
             </Button>
           </div>
@@ -168,10 +168,8 @@ export default function Page() {
               Stack
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              My tech stack is built around enterprise-grade services that are
-              secure, performant, and stable out of the box. Easy to govern and
-              maintain, they minimize technical debt so projects keep running
-              for years without constant upkeep.
+              I mostly work with Microsoft and Azure tools because they are
+              reliable, secure, and practical for long-term maintenance.
             </p>
             <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
               <Badge variant="outline" className="gap-1.5 pr-2.5">
@@ -311,7 +309,7 @@ export default function Page() {
                   </Badge>
                 </a>
               </div>
-              <Separator orientation="vertical" className="mx-1 h-6" />
+              <Separator orientation="vertical" className="mx-1 self-stretch" />
               <div className="flex items-center justify-center gap-1.5 lg:justify-start">
                 <a href={`mailto:${emailAddress}`}>
                   <Badge

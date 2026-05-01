@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Caspar Camille Rubin — Full Stack Enterprise System Engineer";
+export const alt = "Caspar Camille Rubin, Full-Stack Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,7 +51,7 @@ export default function OgImage() {
             marginBottom: 12,
           }}
         >
-          Full Stack Enterprise System Engineer
+          Full-Stack Software Engineer
         </div>
         <div
           style={{
@@ -59,7 +59,7 @@ export default function OgImage() {
             color: "#a1a1aa",
           }}
         >
-          Software Engineer at ETH Zürich
+          Software Engineer at ETH Zurich
         </div>
         <div
           style={{

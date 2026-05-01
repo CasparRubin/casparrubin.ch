@@ -20,13 +20,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://casparrubin.ch"),
-  title: "Caspar Camille Rubin — Full Stack Enterprise System Engineer",
+  title: "Caspar Camille Rubin, Full-Stack Software Engineer",
   description:
-    "Software Engineer at ETH Zürich specializing in process automation with enterprise-grade Microsoft and Azure services.",
+    "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
   keywords: [
     "Caspar Camille Rubin",
     "Full Stack Engineer",
-    "Enterprise Software Engineer",
+    "Software Engineer",
+    "Workflow Automation",
     "ETH Zürich",
     "Azure",
     "Next.js",
@@ -41,29 +42,41 @@ export const metadata: Metadata = {
   publisher: "Caspar Camille Rubin",
   alternates: { canonical: "https://casparrubin.ch" },
   openGraph: {
-    title: "Caspar Camille Rubin — Full Stack Enterprise System Engineer",
+    title: "Caspar Camille Rubin, Full-Stack Software Engineer",
     description:
-      "Software Engineer at ETH Zürich specializing in process automation with enterprise-grade Microsoft and Azure services.",
+      "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
     url: "https://casparrubin.ch",
     siteName: "Caspar Camille Rubin",
     locale: "en_US",
     type: "profile",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Caspar Camille Rubin, Full-Stack Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Caspar Camille Rubin — Full Stack Enterprise System Engineer",
+    title: "Caspar Camille Rubin, Full-Stack Software Engineer",
     description:
-      "Software Engineer at ETH Zürich specializing in process automation with enterprise-grade Microsoft and Azure services.",
+      "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
+    images: ["/opengraph-image.png"],
   },
 };
 
-const jsonLd = {
+const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Caspar Camille Rubin",
-  jobTitle: "Full Stack Enterprise System Engineer",
+  jobTitle: "Full-Stack Software Engineer",
+  description:
+    "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
   worksFor: { "@type": "Organization", name: "ETH Zürich" },
   url: "https://casparrubin.ch",
+  image: "https://casparrubin.ch/caspar_rubin_camille_8.jpg",
   sameAs: [
     "https://github.com/CasparRubin",
     "https://www.linkedin.com/in/caspar-camille-rubin",
@@ -84,6 +97,30 @@ const jsonLd = {
     addressLocality: "Basel",
     addressCountry: "CH",
   },
+};
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: "Caspar Camille Rubin",
+    jobTitle: "Full-Stack Software Engineer",
+    description:
+      "Software engineer at ETH Zurich building Microsoft and Azure tools that automate internal workflows.",
+    url: "https://casparrubin.ch",
+    image: "https://casparrubin.ch/caspar_rubin_camille_8.jpg",
+    sameAs: [
+      "https://github.com/CasparRubin",
+      "https://www.linkedin.com/in/caspar-camille-rubin",
+      "https://helvety.com",
+    ],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [personJsonLd, profilePageJsonLd],
 };
 
 export default function RootLayout({
