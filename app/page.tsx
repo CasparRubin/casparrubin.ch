@@ -1,181 +1,345 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { Briefcase, Cake, Code, Heart, MapPin, Mountain } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUp,
+  Briefcase,
+  Cake,
+  Check,
+  Copy,
+  Code,
+  Heart,
+  Mail,
+  MapPin,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Separator } from "@/components/ui/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
-const stack = [
-  { name: "Azure", icon: "/stack/azure.png", tip: "Cloud hosting & infrastructure" },
-  { name: "Next.js", icon: "/stack/nextjs.png", tip: "Customer-facing frontends & server-side APIs" },
-  { name: "Dataverse", icon: "/stack/dataverse.png", tip: "Databases" },
-  { name: "SharePoint", icon: "/stack/sp_online.png", tip: "File storage & document management" },
-  { name: "Power Automate", icon: "/stack/powerautomate.png", tip: "Automations and Integrations" },
-  { name: "Power Apps", icon: "/stack/powerapps.png", tip: "Backend processing platforms" },
-  { name: "Dynamics 365", icon: "/stack/dynamics365.png", tip: "Business process management" },
-  { name: "AI Foundry", icon: "/stack/aiFoundry.png", tip: "AI integrations & custom agents" },
-] as const;
+function getAge(today: Date, birthDate: Date): number {
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const hasHadBirthdayThisYear =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() &&
+      today.getDate() >= birthDate.getDate());
 
-const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+  if (!hasHadBirthdayThisYear) {
+    age -= 1;
+  }
 
-function yearsSince(year: number, month: number): number {
-  return Math.floor((Date.now() - new Date(year, month).getTime()) / MS_PER_YEAR);
+  return age;
 }
 
-const links = [
-  { name: "GitHub", icon: "/links/github.png", href: "https://github.com/CasparRubin", tip: "My open source projects" },
-  { name: "LinkedIn", icon: "/links/linkedin.png", href: "https://www.linkedin.com/in/caspar-camille-rubin", tip: "Professional profile" },
-  { name: "Helvety", icon: "/links/helvety.png", href: "https://helvety.com", tip: "My side project" },
-] as const;
-
 export default function Page() {
-  const age = yearsSince(1991, 5);
-  const daughterAge = yearsSince(2022, 11);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const roleTitle = "Full Stack Enterprise Systems Engineer";
+  const roleExplanation =
+    "I handle the full process end-to-end: planning, designing, building, integrating, and automating business software.";
+  const today = new Date();
+  const age = getAge(today, new Date(1991, 5, 18));
+  const daughterAge = getAge(today, new Date(2022, 11, 1));
+  const dogAge = getAge(today, new Date(2020, 11, 1));
+  const ethEndDate = new Date(2026, 6, 31, 23, 59, 59, 999);
+  const currentEmployer =
+    today <= ethEndDate ? "ETH Zürich" : "University of Zürich";
+  const emailAddress = "caspar@helvety.com";
+
+  const handleCopyEmail = async () => {
+    await navigator.clipboard.writeText(emailAddress);
+    setEmailCopied(true);
+    window.setTimeout(() => {
+      setEmailCopied(false);
+    }, 1500);
+  };
 
   return (
-    <section className="py-12 lg:py-20">
-      <div className="grid items-center gap-8 lg:grid-cols-[3fr_5fr] lg:gap-14">
-        <div className="relative mx-auto mt-5 w-full max-w-[280px] lg:max-w-[380px]">
+    <section className="pt-12 pb-16">
+      <div className="grid items-start gap-8 lg:grid-cols-[3fr_5fr] lg:gap-14">
+        <div className="relative mx-auto w-full max-w-[280px] lg:mt-5 lg:max-w-[380px]">
           <ProfileCarousel />
         </div>
-
-        <div className="flex flex-col gap-6 items-center lg:items-start text-center lg:text-left">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-              Caspar Camille{" "}
-              <span className="font-normal">Rubin</span>
-            </h1>
-            <div className="mt-3">
-              <Tooltip>
-                <TooltipTrigger>
-                  <Badge variant="default" className="pb-1 text-sm">Full Stack Enterprise Systems Engineer</Badge>
-                </TooltipTrigger>
-                <TooltipContent>
-                  I design and build end-to-end enterprise applications, from frontend to backend, including architecture and process automation.
-                </TooltipContent>
-              </Tooltip>
-            </div>
+        <div className="flex flex-col items-center gap-3 text-center lg:items-start lg:text-left">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            <span className="sm:hidden">
+              Caspar <span className="font-normal">Rubin</span>
+            </span>
+            <span className="hidden sm:inline">
+              Caspar Camille <span className="font-normal">Rubin</span>
+            </span>
+          </h1>
+          <div className="mb-4 flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start">
+            <Badge
+              variant="default"
+              className="h-auto max-w-full whitespace-normal break-words border-transparent bg-[#ff2764] pb-1 text-left text-sm text-white dark:bg-[#ff2764] dark:text-white sm:max-w-3xl"
+            >
+              {showExplanation ? (
+                <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="text-primary-foreground font-normal">
+                    {roleExplanation}
+                  </span>
+                </span>
+              ) : (
+                roleTitle
+              )}
+            </Badge>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowExplanation((current) => !current)}
+              aria-expanded={showExplanation}
+              className="gap-1.5"
+            >
+              {showExplanation ? (
+                <Check className="size-4" aria-hidden="true" />
+              ) : (
+                <>
+                  <ArrowUp className="size-4 sm:hidden" aria-hidden="true" />
+                  <ArrowLeft
+                    className="hidden size-4 sm:block"
+                    aria-hidden="true"
+                  />
+                </>
+              )}
+              <span>
+                {showExplanation ? "weird flex, but ok" : "WTF does that mean?"}
+              </span>
+            </Button>
           </div>
-
-          <ul className="text-muted-foreground flex flex-col gap-2 text-sm items-center lg:items-start">
-            <li className="flex items-center gap-2">
-              <Briefcase className="text-primary size-4 shrink-0" />
-              Working at <span className="text-foreground font-medium">ETH Zürich</span>
+          <h2 className="text-xs font-semibold uppercase tracking-widest">
+            Basics
+          </h2>
+          <ul className="text-muted-foreground flex flex-col items-center gap-2 pt-1 text-sm lg:items-start">
+            <li className="flex items-center justify-center gap-2 lg:justify-start">
+              <Cake className="text-[var(--primary)] size-4 shrink-0" />
+              <span>
+                Born in{" "}
+                <span className="text-foreground font-medium">1991</span> ({age}
+                )
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <MapPin className="text-primary size-4 shrink-0" />
-              Living in <span className="text-foreground font-medium">Basel</span>
+            <li className="flex items-center justify-center gap-2 lg:justify-start">
+              <MapPin className="text-[var(--primary)] size-4 shrink-0" />
+              <span>
+                Living in{" "}
+                <span className="text-foreground font-medium">Basel</span>
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Mountain className="text-primary size-4 shrink-0" />
-              Originally from <span className="text-foreground font-medium">Oberwallis</span>
+            <li className="flex items-center justify-center gap-2 lg:justify-start">
+              <Heart className="text-[var(--primary)] size-4 shrink-0" />
+              <span>
+                Married in{" "}
+                <span className="text-foreground font-medium">2022</span>, one
+                daughter ({daughterAge}), one dog ({dogAge})
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Cake className="text-primary size-4 shrink-0" />
-              Born in <span className="text-foreground font-medium">1991</span> ({age})
+            <li className="flex items-center justify-center gap-2 lg:justify-start">
+              <Briefcase className="text-[var(--primary)] size-4 shrink-0" />
+              <span>
+                Working at{" "}
+                <span className="text-foreground font-medium">
+                  {currentEmployer}
+                </span>
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Heart className="text-primary size-4 shrink-0" />
-              Married, one daughter ({daughterAge}), one dog
-            </li>
-            <li className="flex items-center gap-2">
-              <Code className="text-primary size-4 shrink-0" />
-              Building{" "}
-              <a
-                href="https://helvety.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
-              >
-                Helvety
-              </a>{" "}
-              in my free time (100% Open Source)
+            <li className="flex items-center justify-center gap-2 lg:justify-start">
+              <Code className="text-[var(--primary)] size-4 shrink-0" />
+              <span>
+                Building open source software at{" "}
+                <a
+                  href="https://helvety.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
+                >
+                  Helvety
+                </a>{" "}
+                in my free time
+              </span>
             </li>
           </ul>
-
-          <Separator />
-
-          <div className="flex flex-col gap-3 items-center lg:items-start">
+          <Separator className="my-2" />
+          <div className="flex flex-col gap-3">
             <h2 className="text-xs font-semibold uppercase tracking-widest">
-              Tech Stack
+              Stack
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              My stack is built around enterprise-grade services that are
+              My tech stack is built around enterprise-grade services that are
               secure, performant, and stable out of the box. Easy to govern and
-              maintain, they minimize technical debt so projects keep running for
-              years without constant upkeep.
+              maintain, they minimize technical debt so projects keep running
+              for years without constant upkeep.
             </p>
-
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {stack.map((item) => (
-                <Tooltip key={item.name}>
-                  <TooltipTrigger>
-                    <Badge variant="outline" className="gap-1.5 pr-2.5">
-                      <Image
-                        src={item.icon}
-                        alt=""
-                        width={14}
-                        height={14}
-                        className="size-3.5 object-contain"
-                      />
-                      {item.name}
-                    </Badge>
-                  </TooltipTrigger>
-                  <TooltipContent>{item.tip}</TooltipContent>
-                </Tooltip>
-              ))}
+            <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/azure_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Azure
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/nextjs_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Next.js
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/dataverse_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Dataverse
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/powerautomate_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Power Automate
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/powerapps_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Power Apps
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/dynamics365_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                Dynamics 365
+              </Badge>
+              <Badge variant="outline" className="gap-1.5 pr-2.5">
+                <Image
+                  src="/stack/sharepoint_64px.png"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-3.5 object-contain"
+                />
+                SharePoint
+              </Badge>
             </div>
           </div>
-
-          <Separator />
-
-          <div className="flex flex-wrap items-center gap-y-3 gap-x-2 lg:gap-2 justify-center lg:justify-start">
-            {links.map((item) => (
-              <Tooltip key={item.name}>
-                <TooltipTrigger>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+          <Separator className="my-2" />
+          <div className="flex flex-col gap-3">
+            <h2 className="text-xs font-semibold uppercase tracking-widest">
+              More
+            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+              <div className="flex items-center justify-center gap-2 lg:justify-start">
+                <a
+                  href="https://github.com/CasparRubin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Badge
+                    variant="outline"
+                    className="gap-1.5 pr-2.5 hover:bg-muted"
                   >
-                    <Badge variant="outline" className="gap-1.5 pr-2.5 hover:bg-muted">
-                      <Image
-                        src={item.icon}
-                        alt=""
-                        width={14}
-                        height={14}
-                        className="size-3.5 object-contain"
-                      />
-                      {item.name}
-                    </Badge>
-                  </a>
-                </TooltipTrigger>
-                <TooltipContent>{item.tip}</TooltipContent>
-              </Tooltip>
-            ))}
-            <Separator orientation="vertical" className="mx-1 self-stretch hidden lg:block" />
-            <Tooltip>
-              <TooltipTrigger>
-                <a href="mailto:caspar@helvety.com">
-                  <Badge variant="outline" className="gap-1.5 pr-2.5 hover:bg-muted">
                     <Image
-                      src="/links/helvety.png"
+                      src="/more/github_64px.png"
                       alt=""
                       width={14}
                       height={14}
                       className="size-3.5 object-contain"
                     />
-                    caspar@helvety.com
+                    GitHub
                   </Badge>
                 </a>
-              </TooltipTrigger>
-              <TooltipContent>Send me an email</TooltipContent>
-            </Tooltip>
+                <a
+                  href="https://www.linkedin.com/in/caspar-camille-rubin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Badge
+                    variant="outline"
+                    className="gap-1.5 pr-2.5 hover:bg-muted"
+                  >
+                    <Image
+                      src="/more/linkedin_64px.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="size-3.5 object-contain"
+                    />
+                    LinkedIn
+                  </Badge>
+                </a>
+                <a
+                  href="https://helvety.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Badge
+                    variant="outline"
+                    className="gap-1.5 pr-2.5 hover:bg-muted"
+                  >
+                    <Image
+                      src="/more/helvety_64px.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="size-3.5 object-contain"
+                    />
+                    Helvety
+                  </Badge>
+                </a>
+              </div>
+              <Separator orientation="vertical" className="mx-1 h-6" />
+              <div className="flex items-center justify-center gap-1.5 lg:justify-start">
+                <a href={`mailto:${emailAddress}`}>
+                  <Badge
+                    variant="outline"
+                    className="gap-1.5 pr-2.5 hover:bg-muted"
+                  >
+                    <Mail className="size-3.5" />
+                    {emailAddress}
+                  </Badge>
+                </a>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCopyEmail}
+                  className="h-7 px-2"
+                >
+                  {emailCopied ? (
+                    <Check className="size-3.5" aria-hidden="true" />
+                  ) : (
+                    <Copy className="size-3.5" aria-hidden="true" />
+                  )}
+                  <span className="ml-1">
+                    {emailCopied ? "Copied!" : "Copy email"}
+                  </span>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

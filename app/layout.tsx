@@ -97,7 +97,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {process.env.NODE_ENV === "development" && (
-          <Script src="https://unpkg.com/react-scan/dist/auto.global.js" strategy="beforeInteractive" />
+          <Script
+            src="https://unpkg.com/react-scan/dist/auto.global.js"
+            strategy="beforeInteractive"
+          />
         )}
         <script
           type="application/ld+json"

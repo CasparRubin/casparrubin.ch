@@ -1,48 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import Autoplay from "embla-carousel-autoplay"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 const images = [
-  "/caspar_rubin_camille_1.jpg",
+  "/caspar_rubin_camille_1.jpeg",
   "/caspar_rubin_camille_2.jpeg",
   "/caspar_rubin_camille_3.jpeg",
-  "/caspar_rubin_camille_4.jpeg",
+  "/caspar_rubin_camille_4.jpg",
   "/caspar_rubin_camille_5.jpg",
   "/caspar_rubin_camille_6.jpg",
   "/caspar_rubin_camille_7.jpg",
   "/caspar_rubin_camille_8.jpg",
-  "/caspar_rubin_camille_9.jpg",
-  "/caspar_rubin_camille_10.jpg",
-  "/caspar_rubin_camille_11.jpg",
-  "/caspar_rubin_camille_12.jpg",
-  "/caspar_rubin_camille_13.jpg",
-  "/caspar_rubin_camille_14.jpg",
-  "/caspar_rubin_camille_15.jpg",
-]
+];
 
 function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
+  const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
-  return a
+  return a;
 }
 
 export function ProfileCarousel() {
-  const [shuffled, setShuffled] = useState(images)
+  const [shuffled, setShuffled] = useState(images);
 
   useEffect(() => {
-    setShuffled(shuffle(images))
-  }, [])
+    setShuffled(shuffle(images));
+  }, []);
 
   return (
     <Carousel
@@ -69,5 +62,5 @@ export function ProfileCarousel() {
         ))}
       </CarouselContent>
     </Carousel>
-  )
+  );
 }
