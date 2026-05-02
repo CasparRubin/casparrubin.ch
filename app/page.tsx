@@ -3,12 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ArrowLeft,
-  ArrowUp,
   Briefcase,
   Cake,
   Check,
-  Copy,
   Code,
   Heart,
   Mail,
@@ -16,7 +13,6 @@ import {
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Separator } from "@/components/ui/separator";
 
@@ -35,11 +31,7 @@ function getAge(today: Date, birthDate: Date): number {
 }
 
 export default function Page() {
-  const [showExplanation, setShowExplanation] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
-  const roleTitle = "Full-Stack Software Engineer";
-  const roleExplanation =
-    "I plan, build, and connect business software, then automate the workflows around it.";
   const today = new Date();
   const age = getAge(today, new Date(1991, 5, 18));
   const daughterAge = getAge(today, new Date(2022, 11, 1));
@@ -54,7 +46,7 @@ export default function Page() {
     setEmailCopied(true);
     window.setTimeout(() => {
       setEmailCopied(false);
-    }, 1500);
+    }, 2500);
   };
 
   return (
@@ -72,47 +64,19 @@ export default function Page() {
               Caspar Camille <span className="font-normal">Rubin</span>
             </span>
           </h1>
-          <div className="mb-4 flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start">
+          <div className="mb-4 flex justify-center lg:justify-start">
             <Badge
               variant="default"
               className="h-auto max-w-full whitespace-normal break-words border-transparent bg-[#ff2764] pb-1 text-left text-sm text-white dark:bg-[#ff2764] dark:text-white sm:max-w-3xl"
             >
-              {showExplanation ? (
-                <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span className="text-primary-foreground font-normal">
-                    {roleExplanation}
-                  </span>
-                </span>
-              ) : (
-                roleTitle
-              )}
+              Full-Stack Software Engineer
             </Badge>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowExplanation((current) => !current)}
-              aria-expanded={showExplanation}
-              className="gap-1.5"
-            >
-              {showExplanation ? (
-                <Check className="size-4" aria-hidden="true" />
-              ) : (
-                <>
-                  <ArrowUp className="size-4 sm:hidden" aria-hidden="true" />
-                  <ArrowLeft
-                    className="hidden size-4 sm:block"
-                    aria-hidden="true"
-                  />
-                </>
-              )}
-              <span>{showExplanation ? "Got it" : "What does that mean?"}</span>
-            </Button>
           </div>
           <h2 className="text-xs font-semibold uppercase tracking-widest">
             Basics
           </h2>
           <ul className="text-muted-foreground flex flex-col items-center gap-2 pt-1 text-sm lg:items-start">
-            <li className="flex items-center justify-center gap-2 lg:justify-start">
+            <li className="flex items-start justify-center gap-2 lg:justify-start">
               <Cake className="text-[var(--primary)] size-4 shrink-0" />
               <span>
                 Born in{" "}
@@ -120,14 +84,14 @@ export default function Page() {
                 )
               </span>
             </li>
-            <li className="flex items-center justify-center gap-2 lg:justify-start">
+            <li className="flex items-start justify-center gap-2 lg:justify-start">
               <MapPin className="text-[var(--primary)] size-4 shrink-0" />
               <span>
                 Living in{" "}
                 <span className="text-foreground font-medium">Basel</span>
               </span>
             </li>
-            <li className="flex items-center justify-center gap-2 lg:justify-start">
+            <li className="flex items-start justify-center gap-2 lg:justify-start">
               <Heart className="text-[var(--primary)] size-4 shrink-0" />
               <span>
                 Married in{" "}
@@ -135,7 +99,7 @@ export default function Page() {
                 daughter ({daughterAge}), one dog ({dogAge})
               </span>
             </li>
-            <li className="flex items-center justify-center gap-2 lg:justify-start">
+            <li className="flex items-start justify-center gap-2 lg:justify-start">
               <Briefcase className="text-[var(--primary)] size-4 shrink-0" />
               <span>
                 Working at{" "}
@@ -144,7 +108,7 @@ export default function Page() {
                 </span>
               </span>
             </li>
-            <li className="flex items-center justify-center gap-2 lg:justify-start">
+            <li className="flex items-start justify-center gap-2 lg:justify-start">
               <Code className="text-[var(--primary)] size-4 shrink-0" />
               <span>
                 Building open source software at{" "}
@@ -312,32 +276,37 @@ export default function Page() {
                 </a>
               </div>
               <Separator orientation="vertical" className="mx-1 self-stretch" />
-              <div className="flex items-center justify-center gap-1.5 lg:justify-start">
-                <a href={`mailto:${emailAddress}`}>
+              <div className="flex items-center justify-center lg:justify-start">
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  aria-label={
+                    emailCopied
+                      ? "Email address copied to clipboard"
+                      : `Copy ${emailAddress} to clipboard`
+                  }
+                  className="inline-flex rounded-md focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                >
                   <Badge
                     variant="outline"
                     className="gap-1.5 pr-2.5 hover:bg-muted"
                   >
-                    <Mail className="size-3.5" />
-                    {emailAddress}
+                    {emailCopied ? (
+                      <>
+                        <Check
+                          className="size-3.5 shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span>Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="size-3.5 shrink-0" aria-hidden="true" />
+                        <span>{emailAddress}</span>
+                      </>
+                    )}
                   </Badge>
-                </a>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopyEmail}
-                  className="h-7 px-2"
-                >
-                  {emailCopied ? (
-                    <Check className="size-3.5" aria-hidden="true" />
-                  ) : (
-                    <Copy className="size-3.5" aria-hidden="true" />
-                  )}
-                  <span className="ml-1">
-                    {emailCopied ? "Copied!" : "Copy email"}
-                  </span>
-                </Button>
+                </button>
               </div>
             </div>
           </div>
