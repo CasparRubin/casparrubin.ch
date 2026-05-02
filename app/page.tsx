@@ -77,7 +77,12 @@ export default function Page() {
           </h2>
           <ul className="text-muted-foreground flex flex-col items-center gap-2 pt-1 text-sm lg:items-start">
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <Cake className="text-[var(--primary)] size-4 shrink-0" />
+              <span
+                className="flex h-5 shrink-0 items-center"
+                aria-hidden
+              >
+                <Cake className="text-[var(--primary)] size-4" />
+              </span>
               <span>
                 Born in{" "}
                 <span className="text-foreground font-medium">1991</span> ({age}
@@ -85,14 +90,24 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <MapPin className="text-[var(--primary)] size-4 shrink-0" />
+              <span
+                className="flex h-5 shrink-0 items-center"
+                aria-hidden
+              >
+                <MapPin className="text-[var(--primary)] size-4" />
+              </span>
               <span>
                 Living in{" "}
                 <span className="text-foreground font-medium">Basel</span>
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <Heart className="text-[var(--primary)] size-4 shrink-0" />
+              <span
+                className="flex h-5 shrink-0 items-center"
+                aria-hidden
+              >
+                <Heart className="text-[var(--primary)] size-4" />
+              </span>
               <span>
                 Married in{" "}
                 <span className="text-foreground font-medium">2022</span>, one
@@ -100,7 +115,12 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <Briefcase className="text-[var(--primary)] size-4 shrink-0" />
+              <span
+                className="flex h-5 shrink-0 items-center"
+                aria-hidden
+              >
+                <Briefcase className="text-[var(--primary)] size-4" />
+              </span>
               <span>
                 Working at{" "}
                 <span className="text-foreground font-medium">
@@ -109,7 +129,12 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <Code className="text-[var(--primary)] size-4 shrink-0" />
+              <span
+                className="flex h-5 shrink-0 items-center"
+                aria-hidden
+              >
+                <Code className="text-[var(--primary)] size-4" />
+              </span>
               <span>
                 Building open source software at{" "}
                 <a
