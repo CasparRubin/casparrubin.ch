@@ -77,10 +77,7 @@ export default function Page() {
           </h2>
           <ul className="text-muted-foreground flex flex-col items-center gap-2 pt-1 text-sm lg:items-start">
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <span
-                className="flex h-5 shrink-0 items-center"
-                aria-hidden
-              >
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <Cake className="text-[var(--primary)] size-4" />
               </span>
               <span>
@@ -90,10 +87,7 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <span
-                className="flex h-5 shrink-0 items-center"
-                aria-hidden
-              >
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <MapPin className="text-[var(--primary)] size-4" />
               </span>
               <span>
@@ -102,10 +96,7 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <span
-                className="flex h-5 shrink-0 items-center"
-                aria-hidden
-              >
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <Heart className="text-[var(--primary)] size-4" />
               </span>
               <span>
@@ -115,10 +106,7 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <span
-                className="flex h-5 shrink-0 items-center"
-                aria-hidden
-              >
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <Briefcase className="text-[var(--primary)] size-4" />
               </span>
               <span>
@@ -129,10 +117,7 @@ export default function Page() {
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
-              <span
-                className="flex h-5 shrink-0 items-center"
-                aria-hidden
-              >
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <Code className="text-[var(--primary)] size-4" />
               </span>
               <span>
@@ -326,7 +311,10 @@ export default function Page() {
                       </>
                     ) : (
                       <>
-                        <Mail className="size-3.5 shrink-0" aria-hidden="true" />
+                        <Mail
+                          className="size-3.5 shrink-0"
+                          aria-hidden="true"
+                        />
                         <span>{emailAddress}</span>
                       </>
                     )}

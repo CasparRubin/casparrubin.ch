@@ -73,6 +73,6 @@ export default function OgImage() {
         casparrubin.ch
       </div>
     </div>,
-    { ...size },
+    { ...size }
   );
 }
