@@ -8,6 +8,7 @@ import {
   Check,
   Code,
   Heart,
+  Layers,
   Mail,
   MapPin,
 } from "lucide-react";
@@ -17,7 +18,7 @@ import { ProfileCarousel } from "@/components/profile-carousel";
 import { Separator } from "@/components/ui/separator";
 import { getAge } from "@/lib/age";
 import { getCurrentEmployer } from "@/lib/employer";
-import { EMAIL } from "@/lib/site";
+import { EMAIL, JOB_TITLE, STACK } from "@/lib/site";
 
 export default function Page() {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -38,8 +39,8 @@ export default function Page() {
 
   return (
     <section className="pt-12 pb-16">
-      <div className="grid items-start gap-8 lg:grid-cols-[3fr_5fr] lg:gap-14">
-        <div className="relative mx-auto w-full max-w-[280px] lg:mt-5 lg:max-w-[380px]">
+      <div className="grid items-start gap-8 lg:grid-cols-[3fr_5fr] lg:items-center lg:gap-14">
+        <div className="relative mx-auto w-full max-w-[280px] lg:max-w-[380px]">
           <ProfileCarousel />
         </div>
         <div className="flex flex-col items-center gap-3 text-center lg:items-start lg:text-left">
@@ -56,12 +57,9 @@ export default function Page() {
               variant="default"
               className="h-auto max-w-full whitespace-normal break-words border-transparent bg-[#ff2764] pb-1 text-left text-sm text-white dark:bg-[#ff2764] dark:text-white sm:max-w-3xl"
             >
-              Full-Stack Software Engineer
+              {JOB_TITLE}
             </Badge>
           </div>
-          <h2 className="text-xs font-semibold uppercase tracking-widest">
-            Basics
-          </h2>
           <ul className="text-muted-foreground flex flex-col items-center gap-2 pt-1 text-sm lg:items-start">
             <li className="flex items-start justify-center gap-2 lg:justify-start">
               <span className="flex h-5 shrink-0 items-center" aria-hidden>
@@ -123,95 +121,37 @@ export default function Page() {
           </ul>
           <Separator className="my-2" />
           <div className="flex flex-col gap-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest">
-              Stack
-            </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              I mostly build within the Microsoft ecosystem, especially Azure
-              and the Power Platform. When there is a product gap, I close it
-              with custom code.
+            <p className="text-muted-foreground flex items-center justify-center gap-2 text-sm leading-relaxed lg:justify-start">
+              <span className="flex h-5 shrink-0 items-center" aria-hidden>
+                <Layers className="text-[var(--primary)] size-4" />
+              </span>
+              <span>My go-to stack:</span>
             </p>
-            <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/azure_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Azure
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/nextjs_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Next.js
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/dataverse_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Dataverse
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/powerautomate_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Power Automate
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/powerapps_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Power Apps
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/dynamics365_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                Dynamics 365
-              </Badge>
-              <Badge variant="outline" className="gap-1.5 pr-2.5">
-                <Image
-                  src="/stack/sharepoint_64px.png"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-3.5 object-contain"
-                />
-                SharePoint
-              </Badge>
-            </div>
+            <ul className="text-muted-foreground flex flex-col items-center gap-2 text-sm lg:items-start">
+              {STACK.map(({ category, service, icon }) => (
+                <li
+                  key={service}
+                  className="flex items-center justify-center gap-2 lg:justify-start"
+                >
+                  <Image
+                    src={icon}
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="size-3.5 shrink-0 object-contain"
+                  />
+                  <span>
+                    <span className="text-foreground font-medium">
+                      {category}:
+                    </span>{" "}
+                    {service}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
           <Separator className="my-2" />
           <div className="flex flex-col gap-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest">
-              More
-            </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Want to say hi? Get in touch or check out my open source projects.
-            </p>
             <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               <div className="flex items-center justify-center gap-2 lg:justify-start">
                 <a

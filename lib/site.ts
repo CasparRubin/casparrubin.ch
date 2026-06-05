@@ -2,9 +2,48 @@ import { getCurrentEmployer } from "./employer";
 
 export const SITE_URL = "https://casparrubin.ch";
 export const SITE_NAME = "Caspar Camille Rubin";
-export const JOB_TITLE = "Full-Stack Software Engineer";
+export const JOB_TITLE =
+  "Power Platform Workflow & Process Automation Engineer";
 export const EMAIL = "caspar@helvety.com";
 export const LOCATION = "Basel, Switzerland";
+
+export const STACK = [
+  {
+    category: "Cloud Platform",
+    service: "Azure",
+    icon: "/stack/azure_64px.png",
+  },
+  {
+    category: "Database",
+    service: "Dataverse",
+    icon: "/stack/dataverse_64px.png",
+  },
+  {
+    category: "Files & Documents",
+    service: "SharePoint",
+    icon: "/stack/sharepoint_64px.png",
+  },
+  {
+    category: "Orchestration",
+    service: "Power Automate",
+    icon: "/stack/powerautomate_64px.png",
+  },
+  {
+    category: "Backend Processing",
+    service: "Power Apps",
+    icon: "/stack/powerapps_64px.png",
+  },
+  {
+    category: "CRM",
+    service: "Dynamics 365",
+    icon: "/stack/dynamics365_64px.png",
+  },
+  {
+    category: "Customer Experience",
+    service: "Next.js",
+    icon: "/stack/nextjs_64px.png",
+  },
+] as const;
 
 const PROFILE_IMAGE = `${SITE_URL}/caspar/casparCamilleRubin_1200x1600px_8.webp`;
 
@@ -28,13 +67,13 @@ const KNOWS_ABOUT = [
 export function getEmployerDescription(
   employer: string = getCurrentEmployer()
 ): string {
-  return `Software engineer at ${employer} building Microsoft and Azure tools that automate internal workflows.`;
+  return `Power Platform engineer at ${employer} building workflow and process automation with Microsoft and Azure.`;
 }
 
 export function getManifestDescription(
   employer: string = getCurrentEmployer()
 ): string {
-  return `Software engineer at ${employer} specializing in process automation with enterprise-grade Microsoft and Azure services.`;
+  return `Power Platform workflow and process automation engineer at ${employer}, using enterprise Microsoft and Azure services.`;
 }
 
 export function getOgEmployerLine(
@@ -46,7 +85,8 @@ export function getOgEmployerLine(
 export function getKeywords(employer: string = getCurrentEmployer()): string[] {
   return [
     SITE_NAME,
-    "Full Stack Engineer",
+    JOB_TITLE,
+    "Power Automate",
     "Software Engineer",
     "Workflow Automation",
     employer,

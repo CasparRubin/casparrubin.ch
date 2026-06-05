@@ -1,21 +1,13 @@
 import { expect, type Page } from "@playwright/test";
 
-import { EMAIL, SITE_NAME } from "../lib/site";
+import { EMAIL, JOB_TITLE, SITE_NAME, STACK } from "../lib/site";
 
 export { SITE_NAME };
 export const EMAIL_ADDRESS = EMAIL;
 
 export const CURRENT_EMPLOYER_PATTERN = /ETH Zürich|University of Zürich/;
 
-export const STACK_BADGES = [
-  "Azure",
-  "Next.js",
-  "Dataverse",
-  "Power Automate",
-  "Power Apps",
-  "Dynamics 365",
-  "SharePoint",
-] as const;
+export const STACK_LINES = STACK;
 
 export const EXTERNAL_LINKS = [
   { label: "GitHub", href: "https://github.com/CasparRubin" },
@@ -38,7 +30,5 @@ export async function expectHomeIdentity(page: Page) {
   await expect(nameHeading).toContainText(/Caspar/);
   await expect(nameHeading).toContainText(/Rubin/i);
 
-  await expect(
-    page.getByText(/Full-Stack Software Engineer/, { exact: false })
-  ).toBeVisible();
+  await expect(page.getByText(JOB_TITLE, { exact: false })).toBeVisible();
 }

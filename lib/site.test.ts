@@ -5,6 +5,8 @@ import {
   getEmployerDescription,
   getKeywords,
   getManifestDescription,
+  JOB_TITLE,
+  STACK,
 } from "./site";
 
 describe("site copy", () => {
@@ -23,6 +25,14 @@ describe("site copy", () => {
     );
     expect(getKeywords("University of Zürich")).toContain(
       "University of Zürich"
+    );
+  });
+
+  test("exposes the public job title and stack", () => {
+    expect(JOB_TITLE).toContain("Power Platform");
+    expect(STACK.length).toBeGreaterThan(0);
+    expect(STACK.some((entry) => entry.service === "Power Automate")).toBe(
+      true
     );
   });
 

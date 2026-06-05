@@ -1,10 +1,12 @@
 import { expect, test } from "@playwright/test";
 
+import { JOB_TITLE } from "../lib/site";
+
 import {
   CURRENT_EMPLOYER_PATTERN,
   EMAIL_ADDRESS,
   EXTERNAL_LINKS,
-  STACK_BADGES,
+  STACK_LINES,
   expectHomeIdentity,
   getProfileCarousel,
 } from "./helpers";
@@ -14,17 +16,11 @@ test.describe("home page", () => {
     await page.goto("/");
   });
 
-  test("renders identity, sections, and profile content", async ({ page }) => {
+  test("renders identity and profile content", async ({ page }) => {
     await expectHomeIdentity(page);
 
     await expect(page.getByRole("banner")).toBeVisible();
     await expect(page.getByRole("main")).toBeVisible();
-
-    for (const section of ["Basics", "Stack", "More"] as const) {
-      await expect(
-        page.getByRole("heading", { level: 2, name: section })
-      ).toBeVisible();
-    }
 
     await expect(page.getByText(/Born in/i)).toContainText("1991");
     await expect(page.getByText(/Living in/i)).toContainText("Basel");
@@ -32,10 +28,12 @@ test.describe("home page", () => {
     await expect(page.getByText(/Working at/i)).toContainText(
       CURRENT_EMPLOYER_PATTERN
     );
-    await expect(page.getByText(/Microsoft ecosystem/i)).toBeVisible();
+    await expect(page.getByText(/My go-to stack/i)).toBeVisible();
 
-    for (const badge of STACK_BADGES) {
-      await expect(page.getByText(badge, { exact: true })).toBeVisible();
+    for (const { category, service } of STACK_LINES) {
+      await expect(
+        page.getByText(`${category}: ${service}`, { exact: true })
+      ).toBeVisible();
     }
 
     const carousel = getProfileCarousel(page);
@@ -100,7 +98,7 @@ test.describe("home page", () => {
     );
 
     expect(person?.name).toBe("Caspar Camille Rubin");
-    expect(person?.jobTitle).toBe("Full-Stack Software Engineer");
+    expect(person?.jobTitle).toBe(JOB_TITLE);
     expect(person?.description).toMatch(CURRENT_EMPLOYER_PATTERN);
     expect(person?.worksFor?.name).toMatch(CURRENT_EMPLOYER_PATTERN);
     expect(profilePage).toBeTruthy();
@@ -109,7 +107,7 @@ test.describe("home page", () => {
   test("sets core SEO metadata", async ({ page }) => {
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      /Software engineer at (ETH Zürich|University of Zürich)/i
+      /Power Platform engineer at (ETH Zürich|University of Zürich)/i
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
@@ -117,7 +115,7 @@ test.describe("home page", () => {
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",
-      /Full-Stack Software Engineer/i
+      new RegExp(JOB_TITLE, "i")
     );
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
       "content",
