@@ -2,10 +2,9 @@ import { getCurrentEmployer } from "./employer";
 
 export const SITE_URL = "https://casparrubin.ch";
 export const SITE_NAME = "Caspar Camille Rubin";
-export const JOB_TITLE =
-  "Power Platform Workflow & Process Automation Engineer";
+export const JOB_TITLE = "Process Automation Engineer";
 export const EMAIL = "caspar@helvety.com";
-export const LOCATION = "Basel, Switzerland";
+const LOCATION = "Basel, Switzerland";
 
 export const STACK = [
   {
@@ -34,14 +33,14 @@ export const STACK = [
     icon: "/stack/powerapps_64px.png",
   },
   {
-    category: "CRM",
-    service: "Dynamics 365",
-    icon: "/stack/dynamics365_64px.png",
-  },
-  {
     category: "Customer Experience",
     service: "Next.js",
     icon: "/stack/nextjs_64px.png",
+  },
+  {
+    category: "CRM & ERP",
+    service: "Dynamics 365",
+    icon: "/stack/dynamics365_64px.png",
   },
 ] as const;
 
@@ -67,19 +66,19 @@ const KNOWS_ABOUT = [
 export function getEmployerDescription(
   employer: string = getCurrentEmployer()
 ): string {
-  return `Power Platform engineer at ${employer} building workflow and process automation with Microsoft and Azure.`;
+  return `Process automation engineer at ${employer} building workflows with Microsoft Power Platform and Azure.`;
 }
 
 export function getManifestDescription(
   employer: string = getCurrentEmployer()
 ): string {
-  return `Power Platform workflow and process automation engineer at ${employer}, using enterprise Microsoft and Azure services.`;
+  return `Process automation engineer at ${employer}, using Microsoft Power Platform and Azure.`;
 }
 
 export function getOgEmployerLine(
   employer: string = getCurrentEmployer()
 ): string {
-  return `Software Engineer at ${employer}`;
+  return `${JOB_TITLE} at ${employer}`;
 }
 
 export function getKeywords(employer: string = getCurrentEmployer()): string[] {
@@ -87,7 +86,6 @@ export function getKeywords(employer: string = getCurrentEmployer()): string[] {
     SITE_NAME,
     JOB_TITLE,
     "Power Automate",
-    "Software Engineer",
     "Workflow Automation",
     employer,
     "Azure",
@@ -96,6 +94,7 @@ export function getKeywords(employer: string = getCurrentEmployer()): string[] {
     "Power Platform",
     "Dataverse",
     "SharePoint",
+    "Dynamics 365",
     "Process Automation",
   ];
 }

@@ -1,13 +1,13 @@
 # Caspar Camille Rubin
 
-> Personal website of Caspar Camille Rubin, Power Platform workflow and process automation engineer focused on Microsoft ecosystem tooling and Azure-based product development.
+> Personal website of Caspar Camille Rubin, process automation engineer building workflows with Microsoft Power Platform and Azure.
 
 ## Primary URL
 - https://casparrubin.ch/
 
 ## About
 - Name: Caspar Camille Rubin
-- Role: Power Platform Workflow & Process Automation Engineer
+- Role: Process Automation Engineer
 - Location: Basel, Switzerland
 - Current employer: listed on https://casparrubin.ch/ (kept in sync with the live site)
 

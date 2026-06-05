@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-import { JOB_TITLE } from "../lib/site";
+import { getCurrentEmployer } from "../lib/employer";
+import { getEmployerDescription, JOB_TITLE } from "../lib/site";
 
 import {
   CURRENT_EMPLOYER_PATTERN,
@@ -107,7 +108,7 @@ test.describe("home page", () => {
   test("sets core SEO metadata", async ({ page }) => {
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      /Power Platform engineer at (ETH Zürich|University of Zürich)/i
+      getEmployerDescription(getCurrentEmployer())
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
