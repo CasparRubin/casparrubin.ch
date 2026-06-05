@@ -1,11 +1,15 @@
 import { ImageResponse } from "next/og";
 
+import { getOgEmployerLine, JOB_TITLE, SITE_NAME } from "@/lib/site";
+
 export const runtime = "edge";
-export const alt = "Caspar Camille Rubin, Full-Stack Software Engineer";
+export const alt = `${SITE_NAME}, ${JOB_TITLE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OgImage() {
+  const employerLine = getOgEmployerLine();
+
   return new ImageResponse(
     <div
       style={{
@@ -40,7 +44,7 @@ export default function OgImage() {
           marginBottom: 16,
         }}
       >
-        Caspar Camille Rubin
+        {SITE_NAME}
       </div>
       <div
         style={{
@@ -50,7 +54,7 @@ export default function OgImage() {
           marginBottom: 12,
         }}
       >
-        Full-Stack Software Engineer
+        {JOB_TITLE}
       </div>
       <div
         style={{
@@ -58,7 +62,7 @@ export default function OgImage() {
           color: "#a1a1aa",
         }}
       >
-        Software Engineer at ETH Zurich
+        {employerLine}
       </div>
       <div
         style={{

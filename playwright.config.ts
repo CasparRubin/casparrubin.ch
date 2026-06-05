@@ -1,8 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Listening port for baseURL — must match a running dev server (`PORT`, default 3000).
- * When CI is unset, Playwright may reuse `next dev` already bound to this URL.
+ * Listening port for baseURL (`PORT`, default 3000).
+ * Locally, Playwright may reuse `next dev` already bound to this URL.
+ * In CI, the web server runs `next build && next start` against the same port.
  */
 const port = Number.parseInt(process.env.PORT ?? "3000", 10) || 3000;
 const baseURL = `http://127.0.0.1:${port}`;
@@ -19,9 +20,9 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "bun run dev",
+    command: process.env.CI ? "bun run build && bun run start" : "bun run dev",
     url: baseURL,
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: process.env.CI ? 180_000 : 120_000,
   },
 });

@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 
+import { getManifestDescription, SITE_NAME } from "@/lib/site";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Caspar Camille Rubin",
+    name: SITE_NAME,
     short_name: "Caspar Rubin",
-    description:
-      "Software Engineer at ETH Zürich specializing in process automation with enterprise-grade Microsoft and Azure services.",
+    description: getManifestDescription(),
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -20,26 +20,28 @@ Personal website of Caspar Camille Rubin.
 
 ## Scripts
 
-| Command                           | Purpose                                                                 |
-| --------------------------------- | ----------------------------------------------------------------------- |
-| `bun run dev`                     | Next.js dev server (Turbopack).                                         |
-| `bun run build` / `bun run start` | Production build and server.                                            |
-| `bun run lint`                    | ESLint, **no warnings** (`--max-warnings 0`).                           |
-| `bun run lint:fix`                | ESLint with `--fix`.                                                    |
-| `bun run format`                  | Apply **Prettier** across the repo (`prettier.config.mjs`).             |
-| `bun run format:check`            | Verify formatting (CI-style).                                           |
-| `bun run predeploy`               | `lint` → `format:check` → Playwright `test` → `build`.                  |
-| `bun run test`                    | Playwright smoke tests in `e2e/`.                                       |
-| `bun run test:ci`                 | Same as `test`, with `CI=1` so Playwright starts the dev server itself. |
-| `bun run test:install`            | Download Chromium for Playwright (run once per machine or CI image).    |
+| Command                           | Purpose                                                              |
+| --------------------------------- | -------------------------------------------------------------------- |
+| `bun run dev`                     | Next.js dev server (Turbopack).                                      |
+| `bun run build` / `bun run start` | Production build and server.                                         |
+| `bun run lint`                    | ESLint, **no warnings** (`--max-warnings 0`).                        |
+| `bun run lint:fix`                | ESLint with `--fix`.                                                 |
+| `bun run format`                  | Apply **Prettier** across the repo (`prettier.config.mjs`).          |
+| `bun run format:check`            | Verify formatting (CI-style).                                        |
+| `bun run predeploy`               | `lint` → `format:check` → unit tests → E2E → `build`.                |
+| `bun run test`                    | Bun unit tests (`lib/`) plus Playwright E2E tests in `e2e/`.         |
+| `bun run test:unit`               | Bun unit tests for pure logic in `lib/`.                             |
+| `bun run test:e2e`                | Playwright E2E tests only.                                           |
+| `bun run test:ci`                 | Unit tests + E2E with `CI=1` (production server, retries).           |
+| `bun run test:install`            | Download Chromium for Playwright (run once per machine or CI image). |
 
 ## Testing
 
 Locally, `bun run test` tries to **reuse** a dev server already listening at
 `127.0.0.1` on **`PORT`** (see `playwright.config.ts`; unset → **3000**).
-**`bun run test:ci`** is meant for automation: only one Next.js dev server may
-run per project directory, so do not keep `next dev` open in parallel when using
-`test:ci`.
+**`bun run test:ci`** is meant for automation: it runs unit tests, then E2E
+against a production build (`next build && next start`). Do not keep `next dev`
+open in parallel when using `test:ci`.
 
 ## Stack notes
 

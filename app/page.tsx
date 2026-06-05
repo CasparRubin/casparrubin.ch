@@ -15,20 +15,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Separator } from "@/components/ui/separator";
-
-function getAge(today: Date, birthDate: Date): number {
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const hasHadBirthdayThisYear =
-    today.getMonth() > birthDate.getMonth() ||
-    (today.getMonth() === birthDate.getMonth() &&
-      today.getDate() >= birthDate.getDate());
-
-  if (!hasHadBirthdayThisYear) {
-    age -= 1;
-  }
-
-  return age;
-}
+import { getAge } from "@/lib/age";
+import { getCurrentEmployer } from "@/lib/employer";
+import { EMAIL } from "@/lib/site";
 
 export default function Page() {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -36,10 +25,8 @@ export default function Page() {
   const age = getAge(today, new Date(1991, 5, 18));
   const daughterAge = getAge(today, new Date(2022, 11, 1));
   const dogAge = getAge(today, new Date(2020, 11, 1));
-  const ethEndDate = new Date(2026, 6, 31, 23, 59, 59, 999);
-  const currentEmployer =
-    today <= ethEndDate ? "ETH Zürich" : "University of Zürich";
-  const emailAddress = "caspar@helvety.com";
+  const currentEmployer = getCurrentEmployer(today);
+  const emailAddress = EMAIL;
 
   const handleCopyEmail = async () => {
     await navigator.clipboard.writeText(emailAddress);

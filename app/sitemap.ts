@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const DEFAULT_LAST_MODIFIED = "2026-05-01T00:00:00.000Z";
+const DEFAULT_LAST_MODIFIED = "2026-06-05T00:00:00.000Z";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(

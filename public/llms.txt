@@ -9,6 +9,7 @@
 - Name: Caspar Camille Rubin
 - Role: Full-Stack Software Engineer
 - Location: Basel, Switzerland
+- Current employer: listed on https://casparrubin.ch/ (kept in sync with the live site)
 
 ## Key Links
 - Website: https://casparrubin.ch/
@@ -21,4 +22,4 @@
 
 ## Notes for AI Crawlers
 - This site is primarily a profile and portfolio landing page.
-- Prefer the canonical root URL as the source of truth.
+- Prefer the canonical root URL as the source of truth for role and employer details.
