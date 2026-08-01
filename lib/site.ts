@@ -1,8 +1,7 @@
-import { getCurrentEmployer } from "./employer";
-
 export const SITE_URL = "https://casparrubin.ch";
 export const SITE_NAME = "Caspar Camille Rubin";
 export const JOB_TITLE = "Process Automation Engineer";
+export const EMPLOYER = "University of Zürich";
 export const EMAIL = "caspar@helvety.com";
 const LOCATION = "Basel, Switzerland";
 
@@ -63,31 +62,25 @@ const KNOWS_ABOUT = [
   "AI Foundry",
 ] as const;
 
-export function getEmployerDescription(
-  employer: string = getCurrentEmployer()
-): string {
-  return `Process automation engineer at ${employer} building workflows with Microsoft Power Platform and Azure.`;
+export function getEmployerDescription(): string {
+  return `Process automation engineer at ${EMPLOYER} building workflows with Microsoft Power Platform and Azure.`;
 }
 
-export function getManifestDescription(
-  employer: string = getCurrentEmployer()
-): string {
-  return `Process automation engineer at ${employer}, using Microsoft Power Platform and Azure.`;
+export function getManifestDescription(): string {
+  return `Process automation engineer at ${EMPLOYER}, using Microsoft Power Platform and Azure.`;
 }
 
-export function getOgEmployerLine(
-  employer: string = getCurrentEmployer()
-): string {
-  return `${JOB_TITLE} at ${employer}`;
+export function getOgEmployerLine(): string {
+  return `${JOB_TITLE} at ${EMPLOYER}`;
 }
 
-export function getKeywords(employer: string = getCurrentEmployer()): string[] {
+export function getKeywords(): string[] {
   return [
     SITE_NAME,
     JOB_TITLE,
     "Power Automate",
     "Workflow Automation",
-    employer,
+    EMPLOYER,
     "Azure",
     "Next.js",
     "Microsoft",
@@ -99,15 +92,15 @@ export function getKeywords(employer: string = getCurrentEmployer()): string[] {
   ];
 }
 
-export function buildJsonLdGraph(employer: string = getCurrentEmployer()) {
-  const description = getEmployerDescription(employer);
+export function buildJsonLdGraph() {
+  const description = getEmployerDescription();
 
   const person = {
     "@type": "Person",
     name: SITE_NAME,
     jobTitle: JOB_TITLE,
     description,
-    worksFor: { "@type": "Organization", name: employer },
+    worksFor: { "@type": "Organization", name: EMPLOYER },
     url: SITE_URL,
     image: PROFILE_IMAGE,
     sameAs: [...SAME_AS],

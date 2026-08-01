@@ -17,8 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Separator } from "@/components/ui/separator";
 import { getAge } from "@/lib/age";
-import { getCurrentEmployer } from "@/lib/employer";
-import { EMAIL, JOB_TITLE, STACK } from "@/lib/site";
+import { EMAIL, EMPLOYER, JOB_TITLE, STACK } from "@/lib/site";
 
 export default function Page() {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -26,7 +25,6 @@ export default function Page() {
   const age = getAge(today, new Date(1991, 5, 18));
   const daughterAge = getAge(today, new Date(2022, 11, 1));
   const dogAge = getAge(today, new Date(2020, 11, 1));
-  const currentEmployer = getCurrentEmployer(today);
   const emailAddress = EMAIL;
 
   const handleCopyEmail = async () => {
@@ -96,9 +94,7 @@ export default function Page() {
               </span>
               <span>
                 Working at{" "}
-                <span className="text-foreground font-medium">
-                  {currentEmployer}
-                </span>
+                <span className="text-foreground font-medium">{EMPLOYER}</span>
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">

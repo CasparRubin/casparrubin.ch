@@ -1,11 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-import { getCurrentEmployer } from "../lib/employer";
 import { getEmployerDescription, JOB_TITLE } from "../lib/site";
 
 import {
-  CURRENT_EMPLOYER_PATTERN,
   EMAIL_ADDRESS,
+  EMPLOYER,
   EXTERNAL_LINKS,
   STACK_LINES,
   expectHomeIdentity,
@@ -26,9 +25,7 @@ test.describe("home page", () => {
     await expect(page.getByText(/Born in/i)).toContainText("1991");
     await expect(page.getByText(/Living in/i)).toContainText("Basel");
     await expect(page.getByText(/Married in/i)).toContainText("2022");
-    await expect(page.getByText(/Working at/i)).toContainText(
-      CURRENT_EMPLOYER_PATTERN
-    );
+    await expect(page.getByText(/Working at/i)).toContainText(EMPLOYER);
     await expect(page.getByText(/My go-to stack/i)).toBeVisible();
 
     for (const { category, service } of STACK_LINES) {
@@ -100,15 +97,15 @@ test.describe("home page", () => {
 
     expect(person?.name).toBe("Caspar Camille Rubin");
     expect(person?.jobTitle).toBe(JOB_TITLE);
-    expect(person?.description).toMatch(CURRENT_EMPLOYER_PATTERN);
-    expect(person?.worksFor?.name).toMatch(CURRENT_EMPLOYER_PATTERN);
+    expect(person?.description).toContain(EMPLOYER);
+    expect(person?.worksFor?.name).toBe(EMPLOYER);
     expect(profilePage).toBeTruthy();
   });
 
   test("sets core SEO metadata", async ({ page }) => {
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      getEmployerDescription(getCurrentEmployer())
+      getEmployerDescription()
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",

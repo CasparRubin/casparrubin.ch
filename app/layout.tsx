@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   const description = getEmployerDescription();
   const title = `${SITE_NAME}, ${JOB_TITLE}`;
 

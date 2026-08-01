@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-import { getCurrentEmployer } from "../lib/employer";
 import { getManifestDescription } from "../lib/site";
 
 import { SITE_NAME } from "./helpers";
@@ -47,7 +46,7 @@ test.describe("SEO and metadata routes", () => {
 
     expect(json.name).toBe(SITE_NAME);
     expect(json.short_name).toBe("Caspar Rubin");
-    expect(json.description).toBe(getManifestDescription(getCurrentEmployer()));
+    expect(json.description).toBe(getManifestDescription());
     expect(json.start_url).toBe("/");
     expect(json.display).toBe("standalone");
     expect(json.theme_color).toBe("#ec003f");

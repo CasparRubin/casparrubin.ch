@@ -1,11 +1,9 @@
 import { expect, type Page } from "@playwright/test";
 
-import { EMAIL, JOB_TITLE, SITE_NAME, STACK } from "../lib/site";
+import { EMAIL, EMPLOYER, JOB_TITLE, SITE_NAME, STACK } from "../lib/site";
 
-export { SITE_NAME };
+export { EMPLOYER, SITE_NAME };
 export const EMAIL_ADDRESS = EMAIL;
-
-export const CURRENT_EMPLOYER_PATTERN = /ETH Zürich|University of Zürich/;
 
 export const STACK_LINES = STACK;
 

@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
   buildJsonLdGraph,
+  EMPLOYER,
   getEmployerDescription,
   getKeywords,
   getManifestDescription,
@@ -11,38 +12,22 @@ import {
 } from "./site";
 
 describe("site copy", () => {
-  test("keeps public copy aligned with the job title", () => {
-    expect(getEmployerDescription("ETH Zürich")).toMatch(
-      /^Process automation engineer at ETH Zürich/
+  test("keeps public copy aligned with the job title and employer", () => {
+    expect(getEmployerDescription()).toBe(
+      `Process automation engineer at ${EMPLOYER} building workflows with Microsoft Power Platform and Azure.`
     );
-    expect(getManifestDescription("ETH Zürich")).toMatch(
-      /^Process automation engineer at ETH Zürich/
+    expect(getManifestDescription()).toBe(
+      `Process automation engineer at ${EMPLOYER}, using Microsoft Power Platform and Azure.`
     );
-    expect(getOgEmployerLine("ETH Zürich")).toBe(`${JOB_TITLE} at ETH Zürich`);
-    expect(getKeywords("ETH Zürich")).toContain(JOB_TITLE);
-    expect(getKeywords("ETH Zürich")).not.toContain("Software Engineer");
-  });
-
-  test("describes the ETH Zürich role accurately", () => {
-    expect(getEmployerDescription("ETH Zürich")).toContain("ETH Zürich");
-    expect(getManifestDescription("ETH Zürich")).toContain("ETH Zürich");
-    expect(getKeywords("ETH Zürich")).toContain("ETH Zürich");
-  });
-
-  test("describes the University of Zürich role accurately", () => {
-    expect(getEmployerDescription("University of Zürich")).toContain(
-      "University of Zürich"
-    );
-    expect(getManifestDescription("University of Zürich")).toContain(
-      "University of Zürich"
-    );
-    expect(getKeywords("University of Zürich")).toContain(
-      "University of Zürich"
-    );
+    expect(getOgEmployerLine()).toBe(`${JOB_TITLE} at ${EMPLOYER}`);
+    expect(getKeywords()).toContain(JOB_TITLE);
+    expect(getKeywords()).toContain(EMPLOYER);
+    expect(getKeywords()).not.toContain("Software Engineer");
   });
 
   test("exposes the public job title and stack", () => {
     expect(JOB_TITLE).toBe("Process Automation Engineer");
+    expect(EMPLOYER).toBe("University of Zürich");
     expect(STACK.at(-1)).toEqual({
       category: "CRM & ERP",
       service: "Dynamics 365",
@@ -53,8 +38,8 @@ describe("site copy", () => {
     );
   });
 
-  test("builds JSON-LD with the active employer", () => {
-    const graph = buildJsonLdGraph("University of Zürich");
+  test("builds JSON-LD with the employer", () => {
+    const graph = buildJsonLdGraph();
     const person = graph["@graph"][0] as {
       jobTitle: string;
       worksFor: { name: string };
@@ -62,9 +47,7 @@ describe("site copy", () => {
     };
 
     expect(person.jobTitle).toBe(JOB_TITLE);
-    expect(person.worksFor.name).toBe("University of Zürich");
-    expect(person.description).toBe(
-      getEmployerDescription("University of Zürich")
-    );
+    expect(person.worksFor.name).toBe(EMPLOYER);
+    expect(person.description).toBe(getEmployerDescription());
   });
 });

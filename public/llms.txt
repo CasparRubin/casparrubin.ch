@@ -9,7 +9,7 @@
 - Name: Caspar Camille Rubin
 - Role: Process Automation Engineer
 - Location: Basel, Switzerland
-- Current employer: listed on https://casparrubin.ch/ (kept in sync with the live site)
+- Current employer: University of Zürich
 
 ## Key Links
 - Website: https://casparrubin.ch/
