@@ -94,14 +94,14 @@ export default function Page() {
               </span>
             </li>
           </ul>
-          <div className="flex flex-col gap-3">
+          <div className="mt-4 flex flex-col gap-3">
             <p className="text-muted-foreground flex items-center justify-center gap-2 text-sm leading-relaxed lg:justify-start">
               <span className="flex h-5 shrink-0 items-center" aria-hidden>
                 <Layers className="text-[var(--primary)] size-4" />
               </span>
               <span>My go-to stack:</span>
             </p>
-            <ul className="text-muted-foreground flex flex-col items-center gap-2 text-sm lg:items-start">
+            <ul className="text-muted-foreground flex flex-col items-center gap-2 text-sm lg:items-start lg:pl-3">
               {STACK.map(({ category, service, icon }) => (
                 <li
                   key={service}
@@ -125,7 +125,7 @@ export default function Page() {
               ))}
             </ul>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
             <div className="flex items-center justify-center gap-2 lg:justify-start">
               <a
                 href="https://github.com/CasparRubin"
