@@ -94,7 +94,6 @@ export default function Page() {
               </span>
             </li>
           </ul>
-          <Separator className="my-2" />
           <div className="flex flex-col gap-3">
             <p className="text-muted-foreground flex items-center justify-center gap-2 text-sm leading-relaxed lg:justify-start">
               <span className="flex h-5 shrink-0 items-center" aria-hidden>
@@ -126,76 +125,71 @@ export default function Page() {
               ))}
             </ul>
           </div>
-          <Separator className="my-2" />
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-              <div className="flex items-center justify-center gap-2 lg:justify-start">
-                <a
-                  href="https://github.com/CasparRubin"
-                  target="_blank"
-                  rel="noopener noreferrer"
+          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            <div className="flex items-center justify-center gap-2 lg:justify-start">
+              <a
+                href="https://github.com/CasparRubin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Badge
+                  variant="outline"
+                  className="gap-1.5 pr-2.5 hover:bg-muted"
                 >
-                  <Badge
-                    variant="outline"
-                    className="gap-1.5 pr-2.5 hover:bg-muted"
-                  >
-                    <Image
-                      src="/more/github_64px.png"
-                      alt=""
-                      width={14}
-                      height={14}
-                      unoptimized
-                      className="size-3.5 object-contain"
-                    />
-                    GitHub
-                  </Badge>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/caspar-camille-rubin"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <Image
+                    src="/more/github_64px.png"
+                    alt=""
+                    width={14}
+                    height={14}
+                    unoptimized
+                    className="size-3.5 object-contain"
+                  />
+                  GitHub
+                </Badge>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/caspar-camille-rubin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Badge
+                  variant="outline"
+                  className="gap-1.5 pr-2.5 hover:bg-muted"
                 >
-                  <Badge
-                    variant="outline"
-                    className="gap-1.5 pr-2.5 hover:bg-muted"
-                  >
-                    <Image
-                      src="/more/linkedin_64px.png"
-                      alt=""
-                      width={14}
-                      height={14}
-                      unoptimized
-                      className="size-3.5 object-contain"
-                    />
-                    LinkedIn
-                  </Badge>
-                </a>
-                <a
-                  href="https://helvety.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  <Image
+                    src="/more/linkedin_64px.png"
+                    alt=""
+                    width={14}
+                    height={14}
+                    unoptimized
+                    className="size-3.5 object-contain"
+                  />
+                  LinkedIn
+                </Badge>
+              </a>
+              <a
+                href="https://helvety.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Badge
+                  variant="outline"
+                  className="gap-1.5 pr-2.5 hover:bg-muted"
                 >
-                  <Badge
-                    variant="outline"
-                    className="gap-1.5 pr-2.5 hover:bg-muted"
-                  >
-                    <Image
-                      src="/more/helvety_64px.png"
-                      alt=""
-                      width={14}
-                      height={14}
-                      unoptimized
-                      className="size-3.5 object-contain"
-                    />
-                    Helvety
-                  </Badge>
-                </a>
-              </div>
-              <Separator orientation="vertical" className="mx-1 self-stretch" />
-              <div className="flex items-center justify-center lg:justify-start">
-                <CopyEmailButton />
-              </div>
+                  <Image
+                    src="/more/helvety_64px.png"
+                    alt=""
+                    width={14}
+                    height={14}
+                    unoptimized
+                    className="size-3.5 object-contain"
+                  />
+                  Helvety
+                </Badge>
+              </a>
             </div>
+            <Separator orientation="vertical" className="mx-1 self-stretch" />
+            <CopyEmailButton />
           </div>
         </div>
       </div>
