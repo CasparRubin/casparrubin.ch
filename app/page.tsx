@@ -1,39 +1,18 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import {
-  Briefcase,
-  Cake,
-  Check,
-  Code,
-  Heart,
-  Layers,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { Briefcase, Cake, Code, Heart, Layers, MapPin } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
+import { CopyEmailButton } from "@/components/copy-email-button";
 import { ProfileCarousel } from "@/components/profile-carousel";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getAge } from "@/lib/age";
-import { EMAIL, EMPLOYER, JOB_TITLE, STACK } from "@/lib/site";
+import { EMPLOYER, JOB_TITLE, STACK } from "@/lib/site";
 
 export default function Page() {
-  const [emailCopied, setEmailCopied] = useState(false);
   const today = new Date();
   const age = getAge(today, new Date(1991, 5, 18));
   const daughterAge = getAge(today, new Date(2022, 11, 1));
   const dogAge = getAge(today, new Date(2020, 11, 1));
-  const emailAddress = EMAIL;
-
-  const handleCopyEmail = async () => {
-    await navigator.clipboard.writeText(emailAddress);
-    setEmailCopied(true);
-    window.setTimeout(() => {
-      setEmailCopied(false);
-    }, 2500);
-  };
 
   return (
     <section className="pt-12 pb-16">
@@ -134,6 +113,7 @@ export default function Page() {
                     alt=""
                     width={14}
                     height={14}
+                    unoptimized
                     className="size-3.5 shrink-0 object-contain"
                   />
                   <span>
@@ -164,6 +144,7 @@ export default function Page() {
                       alt=""
                       width={14}
                       height={14}
+                      unoptimized
                       className="size-3.5 object-contain"
                     />
                     GitHub
@@ -183,6 +164,7 @@ export default function Page() {
                       alt=""
                       width={14}
                       height={14}
+                      unoptimized
                       className="size-3.5 object-contain"
                     />
                     LinkedIn
@@ -202,6 +184,7 @@ export default function Page() {
                       alt=""
                       width={14}
                       height={14}
+                      unoptimized
                       className="size-3.5 object-contain"
                     />
                     Helvety
@@ -210,39 +193,7 @@ export default function Page() {
               </div>
               <Separator orientation="vertical" className="mx-1 self-stretch" />
               <div className="flex items-center justify-center lg:justify-start">
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  aria-label={
-                    emailCopied
-                      ? "Email address copied to clipboard"
-                      : `Copy ${emailAddress} to clipboard`
-                  }
-                  className="inline-flex rounded-md focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                >
-                  <Badge
-                    variant="outline"
-                    className="gap-1.5 pr-2.5 hover:bg-muted"
-                  >
-                    {emailCopied ? (
-                      <>
-                        <Check
-                          className="size-3.5 shrink-0"
-                          aria-hidden="true"
-                        />
-                        <span>Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Mail
-                          className="size-3.5 shrink-0"
-                          aria-hidden="true"
-                        />
-                        <span>{emailAddress}</span>
-                      </>
-                    )}
-                  </Badge>
-                </button>
+                <CopyEmailButton />
               </div>
             </div>
           </div>
