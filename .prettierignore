@@ -9,3 +9,5 @@ bun.lock
 *.min.js
 pnpm-lock.yaml
 package-lock.json
+# next dev rewrites this file with long lines.
+AGENTS.md

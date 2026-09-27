@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getManifestDescription, SITE_NAME } from "@/lib/site";
+import { BRAND_COLOR, getManifestDescription, SITE_NAME } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -10,6 +10,6 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#ec003f",
+    theme_color: BRAND_COLOR,
   };
 }

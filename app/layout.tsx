@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 
@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import {
+  BRAND_COLOR,
   buildJsonLdGraph,
   getEmployerDescription,
   getKeywords,
@@ -13,6 +14,10 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/site";
+
+export const viewport: Viewport = {
+  themeColor: BRAND_COLOR,
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

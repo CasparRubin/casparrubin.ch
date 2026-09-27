@@ -48,3 +48,7 @@ open in parallel when using `test:ci`.
 UI is scaffolded with the **shadcn/ui** CLI and **style `base-lyra`**
 (`components.json`); primitives come from **`@base-ui/react`**. Deployed with
 **Vercel** (`@vercel/analytics`).
+
+Public copy, keywords, JSON-LD, and the metadata brand color live in
+`lib/site.ts`. Home-page ages are calculated in the browser so they stay current
+between deploys.

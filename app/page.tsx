@@ -2,18 +2,13 @@ import Image from "next/image";
 import { Briefcase, Cake, Code, Heart, Layers, MapPin } from "lucide-react";
 
 import { CopyEmailButton } from "@/components/copy-email-button";
+import { LiveAge } from "@/components/live-age";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { getAge } from "@/lib/age";
 import { EMPLOYER, JOB_TITLE, STACK } from "@/lib/site";
 
 export default function Page() {
-  const today = new Date();
-  const age = getAge(today, new Date(1991, 5, 18));
-  const daughterAge = getAge(today, new Date(2022, 11, 1));
-  const dogAge = getAge(today, new Date(2020, 11, 1));
-
   return (
     <section className="pt-12 pb-16">
       <div className="grid items-start gap-8 lg:grid-cols-[3fr_5fr] lg:items-center lg:gap-14">
@@ -32,7 +27,7 @@ export default function Page() {
           <div className="mb-4 flex justify-center lg:justify-start">
             <Badge
               variant="default"
-              className="h-auto max-w-full whitespace-normal break-words border-transparent bg-[#ff2764] pb-1 text-left text-sm text-white dark:bg-[#ff2764] dark:text-white sm:max-w-3xl"
+              className="h-auto max-w-full whitespace-normal break-words pb-1 text-left text-sm sm:max-w-3xl"
             >
               {JOB_TITLE}
             </Badge>
@@ -44,8 +39,8 @@ export default function Page() {
               </span>
               <span>
                 Born in{" "}
-                <span className="text-foreground font-medium">1991</span> ({age}
-                )
+                <span className="text-foreground font-medium">1991</span>
+                <LiveAge year={1991} month={6} day={18} />
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
@@ -64,7 +59,9 @@ export default function Page() {
               <span>
                 Married in{" "}
                 <span className="text-foreground font-medium">2022</span>, one
-                daughter ({daughterAge}), one dog ({dogAge})
+                daughter
+                <LiveAge year={2022} month={12} day={1} />, one dog
+                <LiveAge year={2020} month={12} day={1} />
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">

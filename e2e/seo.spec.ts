@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { getManifestDescription } from "../lib/site";
+import { BRAND_COLOR, getManifestDescription, SITE_URL } from "../lib/site";
 
 import { SITE_NAME } from "./helpers";
 
@@ -14,7 +14,7 @@ test.describe("SEO and metadata routes", () => {
     const body = page.locator("body");
     await expect(body).toContainText(/User-Agent/i);
     await expect(body).toContainText(/Allow: \//i);
-    await expect(body).toContainText("https://casparrubin.ch/sitemap.xml");
+    await expect(body).toContainText(`${SITE_URL}/sitemap.xml`);
     await expect(body).toContainText("GPTBot");
     await expect(body).toContainText("ClaudeBot");
   });
@@ -26,7 +26,7 @@ test.describe("SEO and metadata routes", () => {
     const text = await res.text();
     expect(text).toContain('<?xml version="1.0"');
     expect(text).toContain("<urlset");
-    expect(text).toContain("<loc>https://casparrubin.ch</loc>");
+    expect(text).toContain(`<loc>${SITE_URL}</loc>`);
     expect(text).toContain("<changefreq>monthly</changefreq>");
     expect(text).toContain("<priority>1</priority>");
   });
@@ -49,7 +49,7 @@ test.describe("SEO and metadata routes", () => {
     expect(json.description).toBe(getManifestDescription());
     expect(json.start_url).toBe("/");
     expect(json.display).toBe("standalone");
-    expect(json.theme_color).toBe("#ec003f");
+    expect(json.theme_color).toBe(BRAND_COLOR);
   });
 
   test("opengraph image route responds with a PNG", async ({ request }) => {

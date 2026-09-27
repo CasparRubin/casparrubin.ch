@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-import { getEmployerDescription, JOB_TITLE } from "../lib/site";
+import {
+  BRAND_COLOR,
+  getEmployerDescription,
+  JOB_TITLE,
+  SITE_URL,
+} from "../lib/site";
 
 import {
   EMAIL_ADDRESS,
@@ -109,7 +114,11 @@ test.describe("home page", () => {
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      "https://casparrubin.ch"
+      SITE_URL
+    );
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+      "content",
+      BRAND_COLOR
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",

@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+  BRAND_COLOR,
   buildJsonLdGraph,
   EMPLOYER,
   getEmployerDescription,
@@ -19,10 +20,13 @@ describe("site copy", () => {
     expect(getManifestDescription()).toBe(
       `Process automation engineer at ${EMPLOYER}, using Microsoft Power Platform and Azure.`
     );
-    expect(getOgEmployerLine()).toBe(`${JOB_TITLE} at ${EMPLOYER}`);
+    expect(getOgEmployerLine()).toBe(EMPLOYER);
     expect(getKeywords()).toContain(JOB_TITLE);
     expect(getKeywords()).toContain(EMPLOYER);
+    expect(getKeywords()).toContain("AI Foundry");
+    expect(new Set(getKeywords()).size).toBe(getKeywords().length);
     expect(getKeywords()).not.toContain("Software Engineer");
+    expect(BRAND_COLOR).toBe("#ff2764");
   });
 
   test("exposes the public job title and stack", () => {

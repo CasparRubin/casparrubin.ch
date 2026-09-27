@@ -1,6 +1,12 @@
 import { ImageResponse } from "next/og";
 
-import { getOgEmployerLine, JOB_TITLE, SITE_NAME } from "@/lib/site";
+import {
+  BRAND_COLOR,
+  getOgEmployerLine,
+  JOB_TITLE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 export const runtime = "nodejs";
 export const alt = `${SITE_NAME}, ${JOB_TITLE}`;
@@ -31,7 +37,7 @@ export default function OgImage() {
           width: 48,
           height: 48,
           borderRadius: 8,
-          backgroundColor: "#ec003f",
+          backgroundColor: BRAND_COLOR,
           marginBottom: 40,
         }}
       />
@@ -50,7 +56,7 @@ export default function OgImage() {
         style={{
           fontSize: 28,
           fontWeight: 500,
-          color: "#ec003f",
+          color: BRAND_COLOR,
           marginBottom: 12,
         }}
       >
@@ -74,7 +80,7 @@ export default function OgImage() {
           color: "#71717a",
         }}
       >
-        casparrubin.ch
+        {new URL(SITE_URL).host}
       </div>
     </div>,
     { ...size }

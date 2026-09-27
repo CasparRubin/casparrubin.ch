@@ -3,6 +3,7 @@ export const SITE_NAME = "Caspar Camille Rubin";
 export const JOB_TITLE = "Process Automation Engineer";
 export const EMPLOYER = "University of Zürich";
 export const EMAIL = "caspar@helvety.com";
+export const BRAND_COLOR = "#ff2764";
 const LOCATION = "Basel, Switzerland";
 
 export const STACK = [
@@ -71,24 +72,21 @@ export function getManifestDescription(): string {
 }
 
 export function getOgEmployerLine(): string {
-  return `${JOB_TITLE} at ${EMPLOYER}`;
+  return EMPLOYER;
 }
 
 export function getKeywords(): string[] {
   return [
-    SITE_NAME,
-    JOB_TITLE,
-    "Power Automate",
-    "Workflow Automation",
-    EMPLOYER,
-    "Azure",
-    "Next.js",
-    "Microsoft",
-    "Power Platform",
-    "Dataverse",
-    "SharePoint",
-    "Dynamics 365",
-    "Process Automation",
+    ...new Set([
+      SITE_NAME,
+      JOB_TITLE,
+      "Workflow Automation",
+      EMPLOYER,
+      "Microsoft",
+      "Power Platform",
+      "Process Automation",
+      ...KNOWS_ABOUT,
+    ]),
   ];
 }
 
@@ -123,6 +121,7 @@ export function buildJsonLdGraph() {
           name: SITE_NAME,
           jobTitle: JOB_TITLE,
           description,
+          worksFor: { "@type": "Organization", name: EMPLOYER },
           url: SITE_URL,
           image: PROFILE_IMAGE,
           sameAs: [...SAME_AS],
