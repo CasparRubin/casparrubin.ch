@@ -26,7 +26,9 @@ test.describe("interactive UI", () => {
 
   test("theme toggle switches between light and dark", async ({ page }) => {
     const html = page.locator("html");
-    const toggle = page.getByRole("button", { name: "Switch Theme" });
+    const toggle = page.getByRole("button", {
+      name: /Switch to (light|dark) theme|Switch theme/,
+    });
 
     await expect(toggle).toBeVisible();
     await expect(html).not.toHaveClass(/dark/);
@@ -64,6 +66,33 @@ test.describe("interactive UI", () => {
 
     await carousel.getByRole("button", { name: "Next slide" }).click();
 
+    await expect
+      .poll(async () =>
+        track.evaluate((element) => getComputedStyle(element).transform)
+      )
+      .not.toBe(initialTransform);
+  });
+
+  test("profile carousel respects reduced motion", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+
+    const carousel = getProfileCarousel(page);
+    await expect(carousel).toHaveAttribute("aria-label", "Profile photos");
+
+    const track = carousel.locator('[data-slot="carousel-content"] > div');
+    const initialTransform = await track.evaluate(
+      (element) => getComputedStyle(element).transform
+    );
+
+    await page.waitForTimeout(4500);
+
+    const laterTransform = await track.evaluate(
+      (element) => getComputedStyle(element).transform
+    );
+    expect(laterTransform).toBe(initialTransform);
+
+    await carousel.getByRole("button", { name: "Next slide" }).click();
     await expect
       .poll(async () =>
         track.evaluate((element) => getComputedStyle(element).transform)

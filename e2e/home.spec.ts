@@ -28,6 +28,7 @@ test.describe("home page", () => {
     await expect(page.getByRole("main")).toBeVisible();
 
     await expect(page.getByText(/Born in/i)).toContainText("1991");
+    await expect(page.getByText(/Born in/i)).toContainText(/\(\d+\)/);
     await expect(page.getByText(/Living in/i)).toContainText("Basel");
     await expect(page.getByText(/Married in/i)).toContainText("2022");
     await expect(page.getByText(/Working at/i)).toContainText(EMPLOYER);
@@ -52,7 +53,9 @@ test.describe("home page", () => {
       "/"
     );
     await expect(
-      page.getByRole("button", { name: "Switch Theme" })
+      page.getByRole("button", {
+        name: /Switch to (light|dark) theme|Switch theme/,
+      })
     ).toBeVisible();
   });
 
@@ -83,13 +86,20 @@ test.describe("home page", () => {
     expect(jsonLd).toBeTruthy();
 
     const data = JSON.parse(jsonLd!) as {
-      "@graph": Array<{ "@type": string; name?: string; jobTitle?: string }>;
+      "@graph": Array<{
+        "@type": string;
+        "@id"?: string;
+        name?: string;
+        jobTitle?: string;
+        mainEntity?: { "@id"?: string };
+      }>;
     };
 
     const person = data["@graph"].find(
       (entry) => entry["@type"] === "Person"
     ) as
       | {
+          "@id"?: string;
           name?: string;
           jobTitle?: string;
           description?: string;
@@ -104,7 +114,9 @@ test.describe("home page", () => {
     expect(person?.jobTitle).toBe(JOB_TITLE);
     expect(person?.description).toContain(EMPLOYER);
     expect(person?.worksFor?.name).toBe(EMPLOYER);
+    expect(person?.["@id"]).toBe(`${SITE_URL}/#person`);
     expect(profilePage).toBeTruthy();
+    expect(profilePage?.mainEntity?.["@id"]).toBe(person?.["@id"]);
   });
 
   test("sets core SEO metadata", async ({ page }) => {

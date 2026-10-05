@@ -45,13 +45,21 @@ describe("site copy", () => {
   test("builds JSON-LD with the employer", () => {
     const graph = buildJsonLdGraph();
     const person = graph["@graph"][0] as {
+      "@id": string;
       jobTitle: string;
       worksFor: { name: string };
       description: string;
+    };
+    const profilePage = graph["@graph"][1] as {
+      "@type": string;
+      mainEntity: { "@id": string };
     };
 
     expect(person.jobTitle).toBe(JOB_TITLE);
     expect(person.worksFor.name).toBe(EMPLOYER);
     expect(person.description).toBe(getEmployerDescription());
+    expect(person["@id"]).toBe("https://casparrubin.ch/#person");
+    expect(profilePage["@type"]).toBe("ProfilePage");
+    expect(profilePage.mainEntity["@id"]).toBe(person["@id"]);
   });
 });

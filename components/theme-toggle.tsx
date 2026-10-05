@@ -8,11 +8,19 @@ import { Button } from "@/components/ui/button";
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
+  const ariaLabel =
+    resolvedTheme === "dark"
+      ? "Switch to light theme"
+      : resolvedTheme === "light"
+        ? "Switch to dark theme"
+        : "Switch theme";
+
   return (
     <Button
       variant="ghost"
       size="sm"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label={ariaLabel}
       className="gap-2"
     >
       <span className="relative size-4">

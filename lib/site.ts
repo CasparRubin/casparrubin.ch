@@ -4,7 +4,14 @@ export const JOB_TITLE = "Process Automation Engineer";
 export const EMPLOYER = "University of Zürich";
 export const EMAIL = "caspar@helvety.com";
 export const BRAND_COLOR = "#ff2764";
+/** ISO date updated when public site content changes. Overridable via env. */
+export const SITE_LAST_MODIFIED = "2026-10-05";
 const LOCATION = "Basel, Switzerland";
+
+export const BIRTH = { year: 1991, month: 6, day: 18 } as const;
+export const MARRIED_YEAR = 2022;
+export const DAUGHTER_BIRTH = { year: 2022, month: 12, day: 1 } as const;
+export const DOG_BIRTH = { year: 2020, month: 12, day: 1 } as const;
 
 export const STACK = [
   {
@@ -45,6 +52,7 @@ export const STACK = [
 ] as const;
 
 const PROFILE_IMAGE = `${SITE_URL}/caspar/casparCamilleRubin_1200x1600px_8.webp`;
+const PERSON_ID = `${SITE_URL}/#person`;
 
 const SAME_AS = [
   "https://github.com/CasparRubin",
@@ -90,11 +98,17 @@ export function getKeywords(): string[] {
   ];
 }
 
+export function getSiteLastModified(): Date {
+  const override = process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED;
+  return new Date(override || SITE_LAST_MODIFIED);
+}
+
 export function buildJsonLdGraph() {
   const description = getEmployerDescription();
 
   const person = {
     "@type": "Person",
+    "@id": PERSON_ID,
     name: SITE_NAME,
     jobTitle: JOB_TITLE,
     description,
@@ -116,16 +130,9 @@ export function buildJsonLdGraph() {
       person,
       {
         "@type": "ProfilePage",
-        mainEntity: {
-          "@type": "Person",
-          name: SITE_NAME,
-          jobTitle: JOB_TITLE,
-          description,
-          worksFor: { "@type": "Organization", name: EMPLOYER },
-          url: SITE_URL,
-          image: PROFILE_IMAGE,
-          sameAs: [...SAME_AS],
-        },
+        "@id": `${SITE_URL}/#profile`,
+        url: SITE_URL,
+        mainEntity: { "@id": PERSON_ID },
       },
     ],
   };

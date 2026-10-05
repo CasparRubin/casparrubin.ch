@@ -10,11 +10,15 @@ export function CopyEmailButton() {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleCopyEmail = async () => {
-    await navigator.clipboard.writeText(EMAIL);
-    setEmailCopied(true);
-    window.setTimeout(() => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setEmailCopied(true);
+      window.setTimeout(() => {
+        setEmailCopied(false);
+      }, 2500);
+    } catch {
       setEmailCopied(false);
-    }, 2500);
+    }
   };
 
   return (
@@ -32,7 +36,7 @@ export function CopyEmailButton() {
         {emailCopied ? (
           <>
             <Check className="size-3.5 shrink-0" aria-hidden="true" />
-            <span>Copied!</span>
+            <span aria-live="polite">Copied!</span>
           </>
         ) : (
           <>

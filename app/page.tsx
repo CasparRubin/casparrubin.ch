@@ -6,7 +6,15 @@ import { LiveAge } from "@/components/live-age";
 import { ProfileCarousel } from "@/components/profile-carousel";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { EMPLOYER, JOB_TITLE, STACK } from "@/lib/site";
+import {
+  BIRTH,
+  DAUGHTER_BIRTH,
+  DOG_BIRTH,
+  EMPLOYER,
+  JOB_TITLE,
+  MARRIED_YEAR,
+  STACK,
+} from "@/lib/site";
 
 export default function Page() {
   return (
@@ -39,8 +47,14 @@ export default function Page() {
               </span>
               <span>
                 Born in{" "}
-                <span className="text-foreground font-medium">1991</span>
-                <LiveAge year={1991} month={6} day={18} />
+                <span className="text-foreground font-medium">
+                  {BIRTH.year}
+                </span>
+                <LiveAge
+                  year={BIRTH.year}
+                  month={BIRTH.month}
+                  day={BIRTH.day}
+                />
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">
@@ -58,10 +72,21 @@ export default function Page() {
               </span>
               <span>
                 Married in{" "}
-                <span className="text-foreground font-medium">2022</span>, one
-                daughter
-                <LiveAge year={2022} month={12} day={1} />, one dog
-                <LiveAge year={2020} month={12} day={1} />
+                <span className="text-foreground font-medium">
+                  {MARRIED_YEAR}
+                </span>
+                , one daughter
+                <LiveAge
+                  year={DAUGHTER_BIRTH.year}
+                  month={DAUGHTER_BIRTH.month}
+                  day={DAUGHTER_BIRTH.day}
+                />
+                , one dog
+                <LiveAge
+                  year={DOG_BIRTH.year}
+                  month={DOG_BIRTH.month}
+                  day={DOG_BIRTH.day}
+                />
               </span>
             </li>
             <li className="flex items-start justify-center gap-2 lg:justify-start">

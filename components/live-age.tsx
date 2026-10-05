@@ -14,22 +14,16 @@ function subscribe() {
   return () => {};
 }
 
-// The prerendered page omits the number. The client snapshot fills it in
-// after hydration so a birthday does not wait for the next deploy.
-function getServerAge() {
-  return null;
+function readAge(year: number, month: number, day: number) {
+  return getAge(new Date(), new Date(year, month - 1, day));
 }
 
 export function LiveAge({ year, month, day }: LiveAgeProps) {
   const age = useSyncExternalStore(
     subscribe,
-    () => getAge(new Date(), new Date(year, month - 1, day)),
-    getServerAge
+    () => readAge(year, month, day),
+    () => readAge(year, month, day)
   );
-
-  if (age === null) {
-    return null;
-  }
 
   return <span> ({age})</span>;
 }

@@ -48,24 +48,48 @@ export function ProfileCarousel() {
     setSlides([photo1, ...shuffle(images.slice(1))]);
   }, []);
 
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncAutoplay = () => {
+      if (media.matches) {
+        autoplay.current.stop();
+      } else {
+        autoplay.current.play();
+      }
+    };
+
+    // Embla registers plugins asynchronously; wait until after mount.
+    const timer = window.setTimeout(syncAutoplay, 0);
+    media.addEventListener("change", syncAutoplay);
+    return () => {
+      window.clearTimeout(timer);
+      media.removeEventListener("change", syncAutoplay);
+    };
+  }, []);
+
   return (
     <Carousel
       opts={{ loop: true }}
       plugins={[autoplay.current]}
       className="overflow-hidden"
+      aria-label="Profile photos"
     >
       <CarouselContent className="-ml-0">
         {slides.map((image, index) => (
           <CarouselItem key={image.src} className="relative pl-0">
             <Image
               src={image}
-              alt="Caspar Camille Rubin"
+              alt={index === 0 ? "Caspar Camille Rubin" : ""}
               sizes="(max-width: 1024px) 280px, 380px"
               priority={index === 0}
               placeholder="blur"
               className="h-auto w-full saturate-[.9] contrast-[1.04]"
             />
-            <div className="absolute bottom-2 right-2 rounded-full bg-black/30 px-2 py-0.5 text-[11px] font-medium text-white/90 backdrop-blur-sm">
+            <div
+              aria-hidden="true"
+              className="absolute bottom-2 right-2 rounded-full bg-black/30 px-2 py-0.5 text-[11px] font-medium text-white/90 backdrop-blur-sm"
+            >
               Image {index + 1} / {slides.length}
             </div>
           </CarouselItem>

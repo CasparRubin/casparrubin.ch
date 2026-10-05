@@ -27,6 +27,7 @@ test.describe("SEO and metadata routes", () => {
     expect(text).toContain('<?xml version="1.0"');
     expect(text).toContain("<urlset");
     expect(text).toContain(`<loc>${SITE_URL}</loc>`);
+    expect(text).toContain("<lastmod>2026-10-05");
     expect(text).toContain("<changefreq>monthly</changefreq>");
     expect(text).toContain("<priority>1</priority>");
   });
@@ -42,6 +43,7 @@ test.describe("SEO and metadata routes", () => {
       start_url: string;
       display: string;
       theme_color: string;
+      icons?: Array<{ src: string; type?: string }>;
     };
 
     expect(json.name).toBe(SITE_NAME);
@@ -50,6 +52,7 @@ test.describe("SEO and metadata routes", () => {
     expect(json.start_url).toBe("/");
     expect(json.display).toBe("standalone");
     expect(json.theme_color).toBe(BRAND_COLOR);
+    expect(json.icons?.[0]?.src).toBe("/icon.png");
   });
 
   test("opengraph image route responds with a PNG", async ({ request }) => {
