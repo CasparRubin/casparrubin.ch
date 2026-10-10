@@ -15,6 +15,8 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
+export const ensureStatic = "navigation";
+
 export const viewport: Viewport = {
   themeColor: BRAND_COLOR,
 };
@@ -24,55 +26,53 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-export function generateMetadata(): Metadata {
-  const description = getEmployerDescription();
-  const title = `${SITE_NAME}, ${JOB_TITLE}`;
+const description = getEmployerDescription();
+const title = `${SITE_NAME}, ${JOB_TITLE}`;
 
-  return {
-    metadataBase: new URL(SITE_URL),
-    applicationName: SITE_NAME,
-    title,
-    description,
-    keywords: getKeywords(),
-    authors: [{ name: SITE_NAME, url: SITE_URL }],
-    creator: SITE_NAME,
-    publisher: SITE_NAME,
-    alternates: { canonical: SITE_URL },
-    robots: {
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  title,
+  description,
+  keywords: getKeywords(),
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  alternates: { canonical: SITE_URL },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    title,
+    description,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "en_US",
+    type: "profile",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: title,
       },
-    },
-    openGraph: {
-      title,
-      description,
-      url: SITE_URL,
-      siteName: SITE_NAME,
-      locale: "en_US",
-      type: "profile",
-      images: [
-        {
-          url: "/opengraph-image.png",
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/opengraph-image.png"],
-    },
-  };
-}
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image.png"],
+  },
+};
 
 export default function RootLayout({
   children,

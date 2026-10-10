@@ -14,7 +14,8 @@ Personal website of Caspar Camille Rubin.
 
 ## Prerequisites
 
-- **Node.js** 24.x (`engines.node` in `package.json`).
+- **Node.js** 24.x (`engines.node` in `package.json`). The Vercel project is set
+  to **Node 24.x** so production builds match local.
 - **[Bun](https://bun.sh/)** for installs and npm scripts (`bun.lock`); you can
   substitute `npm`/`pnpm` if you prefer.
 
@@ -49,6 +50,12 @@ UI is scaffolded with the **shadcn/ui** CLI and **style `base-lyra`**
 (`components.json`); primitives come from **`@base-ui/react`**. Deployed with
 **Vercel** (`@vercel/analytics`).
 
+The app runs **Next.js 16.4** with **Cache Components** and **Partial
+Prefetching** (`cacheComponents` / `partialPrefetching` in `next.config.ts`).
+The root layout sets `ensureStatic = "navigation"` so the site stays fully
+static at build time. The **React Compiler** (Rust Turbopack path) is enabled
+for automatic memoization.
+
 Public copy, keywords, JSON-LD, and the metadata brand color live in
-`lib/site.ts`. Home-page ages are calculated in the browser so they stay current
-between deploys.
+`lib/site.ts`. Home-page ages are calculated in the browser after hydration so
+they stay current between deploys without making the route dynamic.

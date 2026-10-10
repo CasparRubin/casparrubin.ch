@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Image, { type StaticImageData } from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -40,22 +40,33 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export function ProfileCarousel() {
-  const [slides, setSlides] = useState(images);
-  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+function subscribe() {
+  return () => {};
+}
 
-  useEffect(() => {
-    setSlides([photo1, ...shuffle(images.slice(1))]);
-  }, []);
+let clientSlides: StaticImageData[] | null = null;
+
+function getClientSlides() {
+  if (!clientSlides) {
+    clientSlides = [photo1, ...shuffle(images.slice(1))];
+  }
+  return clientSlides;
+}
+
+export function ProfileCarousel() {
+  const slides = useSyncExternalStore(subscribe, getClientSlides, () => images);
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 4000, stopOnInteraction: false })
+  );
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const syncAutoplay = () => {
       if (media.matches) {
-        autoplay.current.stop();
+        autoplay.stop();
       } else {
-        autoplay.current.play();
+        autoplay.play();
       }
     };
 
@@ -66,12 +77,12 @@ export function ProfileCarousel() {
       window.clearTimeout(timer);
       media.removeEventListener("change", syncAutoplay);
     };
-  }, []);
+  }, [autoplay]);
 
   return (
     <Carousel
       opts={{ loop: true }}
-      plugins={[autoplay.current]}
+      plugins={[autoplay]}
       className="overflow-hidden"
       aria-label="Profile photos"
     >

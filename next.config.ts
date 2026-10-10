@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
+  cacheComponents: true,
+  partialPrefetching: true,
+  reactCompiler: true,
+  experimental: {
+    turbopackRustReactCompiler: true,
+    turbopackGc: true,
+    turbopackLazyDynamicImports: true,
+    agentUpgrade: "security",
+  },
 };
 
 export default nextConfig;
