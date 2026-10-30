@@ -1,6 +1,6 @@
 # Caspar Camille Rubin
 
-> Personal website of Caspar Camille Rubin, process automation engineer building workflows with Microsoft Power Platform and Azure.
+> Personal website of Caspar Camille Rubin, process automation engineer building workflows with Azure, Microsoft Power Platform and PostgreSQL.
 
 ## Primary URL
 - https://casparrubin.ch/

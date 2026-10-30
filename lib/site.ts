@@ -5,7 +5,7 @@ export const EMPLOYER = "University of Zürich";
 export const EMAIL = "caspar@helvety.com";
 export const BRAND_COLOR = "#ff2764";
 /** ISO date updated when public site content changes. Overridable via env. */
-export const SITE_LAST_MODIFIED = "2026-10-05";
+export const SITE_LAST_MODIFIED = "2026-10-30";
 const LOCATION = "Basel, Switzerland";
 
 export const BIRTH = { year: 1991, month: 6, day: 18 } as const;
@@ -21,6 +21,11 @@ export const STACK = [
   },
   {
     category: "Database",
+    service: "PostgreSQL",
+    icon: "/stack/postgresql_64px.png",
+  },
+  {
+    category: "Data Platform",
     service: "Dataverse",
     icon: "/stack/dataverse_64px.png",
   },
@@ -63,6 +68,7 @@ const SAME_AS = [
 const KNOWS_ABOUT = [
   "Azure",
   "Next.js",
+  "PostgreSQL",
   "Dataverse",
   "SharePoint",
   "Power Automate",
@@ -72,11 +78,11 @@ const KNOWS_ABOUT = [
 ] as const;
 
 export function getEmployerDescription(): string {
-  return `Process automation engineer at ${EMPLOYER} building workflows with Microsoft Power Platform and Azure.`;
+  return `Process automation engineer at ${EMPLOYER} building workflows with Azure, Microsoft Power Platform and PostgreSQL.`;
 }
 
 export function getManifestDescription(): string {
-  return `Process automation engineer at ${EMPLOYER}, using Microsoft Power Platform and Azure.`;
+  return `Process automation engineer at ${EMPLOYER}, using Azure, Microsoft Power Platform and PostgreSQL.`;
 }
 
 export function getOgEmployerLine(): string {

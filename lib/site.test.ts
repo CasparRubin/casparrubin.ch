@@ -15,10 +15,10 @@ import {
 describe("site copy", () => {
   test("keeps public copy aligned with the job title and employer", () => {
     expect(getEmployerDescription()).toBe(
-      `Process automation engineer at ${EMPLOYER} building workflows with Microsoft Power Platform and Azure.`
+      `Process automation engineer at ${EMPLOYER} building workflows with Azure, Microsoft Power Platform and PostgreSQL.`
     );
     expect(getManifestDescription()).toBe(
-      `Process automation engineer at ${EMPLOYER}, using Microsoft Power Platform and Azure.`
+      `Process automation engineer at ${EMPLOYER}, using Azure, Microsoft Power Platform and PostgreSQL.`
     );
     expect(getOgEmployerLine()).toBe(EMPLOYER);
     expect(getKeywords()).toContain(JOB_TITLE);
@@ -40,6 +40,12 @@ describe("site copy", () => {
     expect(STACK.some((entry) => entry.service === "Power Automate")).toBe(
       true
     );
+    expect(STACK.find((entry) => entry.category === "Database")).toEqual({
+      category: "Database",
+      service: "PostgreSQL",
+      icon: "/stack/postgresql_64px.png",
+    });
+    expect(STACK.some((entry) => entry.service === "Dataverse")).toBe(true);
   });
 
   test("builds JSON-LD with the employer", () => {

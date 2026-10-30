@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-import { BRAND_COLOR, getManifestDescription, SITE_URL } from "../lib/site";
+import {
+  BRAND_COLOR,
+  getManifestDescription,
+  SITE_LAST_MODIFIED,
+  SITE_URL,
+} from "../lib/site";
 
 import { SITE_NAME } from "./helpers";
 
@@ -27,7 +32,7 @@ test.describe("SEO and metadata routes", () => {
     expect(text).toContain('<?xml version="1.0"');
     expect(text).toContain("<urlset");
     expect(text).toContain(`<loc>${SITE_URL}</loc>`);
-    expect(text).toContain("<lastmod>2026-10-05");
+    expect(text).toContain(`<lastmod>${SITE_LAST_MODIFIED}`);
     expect(text).toContain("<changefreq>monthly</changefreq>");
     expect(text).toContain("<priority>1</priority>");
   });
