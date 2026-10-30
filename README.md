@@ -56,6 +56,10 @@ The root layout sets `ensureStatic = "navigation"` so the site stays fully
 static at build time. The **React Compiler** (Rust Turbopack path) is enabled
 for automatic memoization.
 
+Dependencies track the latest stable releases. **TypeScript stays on 6.x**
+because `typescript-eslint` (used by `eslint-config-next`) does not support the
+TypeScript 7.0 API yet; bump it once TS ≥ 7.1 lint support lands.
+
 Public copy, keywords, JSON-LD, and the metadata brand color live in
 `lib/site.ts`. Home-page ages are calculated in the browser after hydration so
 they stay current between deploys without making the route dynamic.
