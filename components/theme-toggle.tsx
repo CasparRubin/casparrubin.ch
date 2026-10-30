@@ -2,18 +2,30 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 
+function subscribe() {
+  return () => {};
+}
+
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
+  // `resolvedTheme` is only known on the client (storage/system preference), so
+  // keep the server and hydration render identical and update after mounting.
+  const isHydrated = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
 
   const ariaLabel =
-    resolvedTheme === "dark"
-      ? "Switch to light theme"
-      : resolvedTheme === "light"
-        ? "Switch to dark theme"
-        : "Switch theme";
+    !isHydrated || resolvedTheme === undefined
+      ? "Switch theme"
+      : resolvedTheme === "dark"
+        ? "Switch to light theme"
+        : "Switch to dark theme";
 
   return (
     <Button

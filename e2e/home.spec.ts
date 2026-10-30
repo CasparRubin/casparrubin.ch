@@ -47,6 +47,23 @@ test.describe("home page", () => {
     await expect(page.getByText(/Image \d+ \/ 8/).first()).toBeVisible();
   });
 
+  test("hydrates without console or page errors", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (message) => {
+      if (message.type() !== "error") return;
+      // Vercel Analytics only serves its script from Vercel; locally it 404s.
+      if (message.location().url.includes("_vercel/insights")) return;
+      errors.push(message.text());
+    });
+    page.on("pageerror", (error) => errors.push(error.message));
+
+    await page.goto("/");
+    await expect(page.getByRole("main")).toBeVisible();
+    await page.waitForLoadState("networkidle");
+
+    expect(errors).toEqual([]);
+  });
+
   test("navbar links home and exposes theme control", async ({ page }) => {
     await expect(page.getByRole("banner").getByRole("link")).toHaveAttribute(
       "href",
